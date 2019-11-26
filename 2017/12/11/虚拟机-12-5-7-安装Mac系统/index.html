@@ -6,31 +6,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="BiWin&#39;s Blog">
-    <title>归档: 2019/11 - BiWin&#39;s Blog</title>
+    <title>虚拟机(12.5.7)安装Mac系统 - BiWin&#39;s Blog</title>
     <meta name="author" content="Mr.WangLi">
     
-        <meta name="keywords" content="Hexo,Javascript,Java,Docker,Kubernetes,JVM,MySQL,Nodejs,Vue,">
+        <meta name="keywords" content="Hexo,Javascript,Java,Docker,Kubernetes,JVM,MySQL,Nodejs,Vue,Vmware,运维,Macos">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{}</script>
-    <meta name="description" content="一个全栈的攻城狮,Java,Docker,Kubernetes,JVM,MySQL,Nodejs,Vue">
-<meta name="keywords" content="Hexo,Javascript,Java,Docker,Kubernetes,JVM,MySQL,Nodejs,Vue">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Mr.WangLi","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"\n\n\n\n一、环境准备\n下载Vmware虚拟机我的版本是12.5.7链接：https://pan.baidu.com/s/1geQLvgf  密码：sdj3\n下载Mac系统、python、unlocker等链接: https://pan.baidu.com/s/1kUQDngF 密码: fpna\n\n二、基本步骤\n首先下载 vmware workstation，以管理员身份运行，安装点击下一步即可，注册码网盘中已提供。\n解压unlocker207至任意目录，找到win-install.cmd文件，右键以管理员身份运行。这一步骤很关键，决定了后续VM会不会识别出OS X。\n上一步可能出现不成功的情况，可以安装python后，再修改win-install.cmd，找到echo Patching...，改成如下图\n\n\n打开Vmware载入Mac OS X 10.11\n新建虚拟机，选择典型，下一步\n选择安装程序光盘映像文件，点击选择CDR镜像文件路径\n如果第二部unlocker文件没有处理好的话，这个地方可能就不会出现Apple Mac OS X。如果不行，可以多下载几个unlocker试试。版本根据实际版本选择，我的是10.11。\n名称和安装位置自己自定义，点击下一步\n点击下一步即可\n点击完成\n然后点击开启虚拟机。\n出现这个错误，你需要找到你VM的根文件，找到根文件下的 OS X xx.xx.vmx，右键用记事本方式打开，找到 smc.present = “TRUE”，在后面手动添加一句smc.version = 0，如下图。\n\n\n\n三、安装Mac\n启动新建的虚拟机\n在磁盘工具里进行分区\n后续都是基本配置的问题了。祝你安装成功！\n\n四、关于Mac的优化\n辅助功能-&gt; 勾上减少透明度\n安装beamoff，流程图会有所提升，但不要期望与苹果电脑媲美。可以网上搜索安装方法。也可以在评论里面与我联系！\n\n转载请注明原地址，BiWin的博客：http://mybiwin.top 谢谢！","dateCreated":"2017-12-11T12:44:04+08:00","dateModified":"2019-11-26T22:05:08+08:00","datePublished":"2017-12-11T12:44:04+08:00","description":"哈哈，买不起mac，只能玩玩黑苹果，仅为记录自己搭建过程。","headline":"虚拟机(12.5.7)安装Mac系统","image":["http://q1kfgxn5f.bkt.clouddn.com/macos.jpg","http://q1kfgxn5f.bkt.clouddn.com/macos.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://biwin.site/2017/12/11/%E8%99%9A%E6%8B%9F%E6%9C%BA-12-5-7-%E5%AE%89%E8%A3%85Mac%E7%B3%BB%E7%BB%9F/"},"publisher":{"@type":"Organization","name":"Mr.WangLi","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"http://biwin.site/2017/12/11/%E8%99%9A%E6%8B%9F%E6%9C%BA-12-5-7-%E5%AE%89%E8%A3%85Mac%E7%B3%BB%E7%BB%9F/","keywords":"Vmware","thumbnailUrl":"http://q1kfgxn5f.bkt.clouddn.com/macos.jpg"}</script>
+    <meta name="description" content="虚拟机(12.5.7)安装Mac系统">
+<meta name="keywords" content="Vmware,运维,Macos">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="BiWin&#39;s Blog">
-<meta property="og:url" content="http:&#x2F;&#x2F;biwin.site&#x2F;archives&#x2F;2019&#x2F;11&#x2F;index.html">
+<meta property="og:title" content="虚拟机(12.5.7)安装Mac系统">
+<meta property="og:url" content="http:&#x2F;&#x2F;biwin.site&#x2F;2017&#x2F;12&#x2F;11&#x2F;%E8%99%9A%E6%8B%9F%E6%9C%BA-12-5-7-%E5%AE%89%E8%A3%85Mac%E7%B3%BB%E7%BB%9F&#x2F;index.html">
 <meta property="og:site_name" content="BiWin&#39;s Blog">
-<meta property="og:description" content="一个全栈的攻城狮,Java,Docker,Kubernetes,JVM,MySQL,Nodejs,Vue">
+<meta property="og:description" content="虚拟机(12.5.7)安装Mac系统">
 <meta property="og:locale" content="zh-cn">
+<meta property="og:image" content="http:&#x2F;&#x2F;q1kfgxn5f.bkt.clouddn.com&#x2F;win-install.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;q1kfgxn5f.bkt.clouddn.com&#x2F;vm1.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;q1kfgxn5f.bkt.clouddn.com&#x2F;vm2.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;q1kfgxn5f.bkt.clouddn.com&#x2F;vm3.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;q1kfgxn5f.bkt.clouddn.com&#x2F;vm4.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;q1kfgxn5f.bkt.clouddn.com&#x2F;vm5.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;q1kfgxn5f.bkt.clouddn.com&#x2F;vm6.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;q1kfgxn5f.bkt.clouddn.com&#x2F;vm7.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;q1kfgxn5f.bkt.clouddn.com&#x2F;vm8.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;q1kfgxn5f.bkt.clouddn.com&#x2F;vm9.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;q1kfgxn5f.bkt.clouddn.com&#x2F;mac1.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;q1kfgxn5f.bkt.clouddn.com&#x2F;mac2.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;q1kfgxn5f.bkt.clouddn.com&#x2F;mac3.png">
+<meta property="og:updated_time" content="2019-11-26T14:05:08.762Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;q1kfgxn5f.bkt.clouddn.com&#x2F;win-install.png">
     
     
         
     
     
     
+        <meta property="og:image" content="http://q1kfgxn5f.bkt.clouddn.com/macos.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://q1kfgxn5f.bkt.clouddn.com/macos.jpg"/>
+    
+    
+        <meta property="og:image" content="http://q1kfgxn5f.bkt.clouddn.com/macos.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://q1kfgxn5f.bkt.clouddn.com/macos.jpg"/>
     
     
     <!--STYLES-->
@@ -50,7 +71,7 @@
 
     
 
-<header id="header" data-behavior="1">
+<header id="header" data-behavior="4">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
         <a
@@ -77,7 +98,7 @@
             <!-- Define author's picture -->
 
 
-<nav id="sidebar" data-behavior="1">
+<nav id="sidebar" data-behavior="4">
     <div class="sidebar-container">
         
         
@@ -254,146 +275,90 @@
 </nav>
 
             
-            <div id="main" data-behavior="1"
-                 class="
-                        hasCoverMetaIn
-                        ">
+        <div class="post-header-cover
+                    text-center
+                    post-header-cover--full"
+             style="background-image:url('http://q1kfgxn5f.bkt.clouddn.com/macos.jpg');"
+             data-behavior="4">
+            
+        </div>
+
+            <div id="main" data-behavior="4"
+                 class="hasCover
+                        hasCoverMetaOut
+                        hasCoverCaption">
                 
-    <section class="postShorten-group main-content-wrap">
+<article class="post">
+    
+        <span class="post-header-cover-caption caption">哈哈，买不起mac，只能玩黑苹果</span>
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2019/11/26/hexo-theme-tranquilpeak/"
-                            aria-label=": 个性主题配置"
-                        >
-                            个性主题配置
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-11-26T16:41:44+08:00">
-	
-		    11月 26, 2019
-    	
-    </time>
+        <div class="post-header main-content-wrap text-center">
     
-        <span>发布在 </span>
-        
-    <a class="category-link" href="/categories/Hexo/">Hexo</a>, <a class="category-link" href="/categories/Hexo/Blog/">Blog</a>
-
-
+        <h1 class="post-title">
+            虚拟机(12.5.7)安装Mac系统
+        </h1>
+    
     
 </div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- excerpt -->
+<h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、环境准备"><span class="toc-text">一、环境准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、基本步骤"><span class="toc-text">二、基本步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、安装Mac"><span class="toc-text">三、安装Mac</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、关于Mac的优化"><span class="toc-text">四、关于Mac的优化</span></a></li></ol>
+
+
+<h2 id="一、环境准备"><a href="#一、环境准备" class="headerlink" title="一、环境准备"></a>一、环境准备</h2><ul>
+<li>下载Vmware虚拟机我的版本是12.5.7<br>链接：<a href="https://pan.baidu.com/s/1geQLvgf" target="_blank" rel="noopener">https://pan.baidu.com/s/1geQLvgf</a>  密码：sdj3</li>
+<li>下载Mac系统、python、unlocker等<br>链接: <a href="https://pan.baidu.com/s/1kUQDngF" target="_blank" rel="noopener">https://pan.baidu.com/s/1kUQDngF</a> 密码: fpna</li>
+</ul>
+<h2 id="二、基本步骤"><a href="#二、基本步骤" class="headerlink" title="二、基本步骤"></a>二、基本步骤</h2><ol>
+<li>首先下载 vmware workstation，以管理员身份运行，安装点击下一步即可，注册码网盘中已提供。</li>
+<li>解压unlocker207至任意目录，找到win-install.cmd文件，右键以管理员身份运行。这一步骤很关键，决定了后续VM会不会识别出OS X。<ul>
+<li>上一步可能出现不成功的情况，可以安装python后，再修改win-install.cmd，找到<code>echo Patching...</code>，改成如下图<br><img src="http://q1kfgxn5f.bkt.clouddn.com/win-install.png" alt="&quot;win-install&quot;"></li>
+</ul>
+</li>
+<li>打开Vmware载入Mac OS X 10.11<ul>
+<li>新建虚拟机，选择<code>典型</code>，下一步<br><img src="http://q1kfgxn5f.bkt.clouddn.com/vm1.png" alt="&quot;vm1&quot;"></li>
+<li>选择安装程序光盘映像文件，点击选择CDR镜像文件路径<br><img src="http://q1kfgxn5f.bkt.clouddn.com/vm2.png" alt="&quot;vm2&quot;"><br><img src="http://q1kfgxn5f.bkt.clouddn.com/vm3.png" alt="&quot;vm3&quot;"></li>
+<li>如果第二部unlocker文件没有处理好的话，这个地方可能就不会出现<code>Apple Mac OS X</code>。如果不行，可以多下载几个unlocker试试。版本根据实际版本选择，我的是10.11。<br><img src="http://q1kfgxn5f.bkt.clouddn.com/vm4.png" alt="&quot;vm4&quot;"></li>
+<li>名称和安装位置自己自定义，点击下一步<br><img src="http://q1kfgxn5f.bkt.clouddn.com/vm5.png" alt="&quot;vm5&quot;"></li>
+<li>点击下一步即可<br><img src="http://q1kfgxn5f.bkt.clouddn.com/vm6.png" alt="&quot;vm6&quot;"></li>
+<li>点击完成<br><img src="http://q1kfgxn5f.bkt.clouddn.com/vm7.png" alt="&quot;vm7&quot;"></li>
+<li>然后点击开启虚拟机。<br><img src="http://q1kfgxn5f.bkt.clouddn.com/vm8.png" alt="&quot;vm8&quot;"></li>
+<li>出现这个错误，你需要找到你VM的根文件，找到根文件下的 OS X xx.xx.vmx，右键用记事本方式打开，找到 <code>smc.present = “TRUE”</code>，在后面手动添加一句<code>smc.version = 0</code>，如下图。<br><img src="http://q1kfgxn5f.bkt.clouddn.com/vm9.png" alt="&quot;vm9&quot;"></li>
+</ul>
+</li>
+</ol>
+<h2 id="三、安装Mac"><a href="#三、安装Mac" class="headerlink" title="三、安装Mac"></a>三、安装Mac</h2><ul>
+<li>启动新建的虚拟机<br><img src="http://q1kfgxn5f.bkt.clouddn.com/mac1.png" alt="&quot;mac1&quot;"><br><img src="http://q1kfgxn5f.bkt.clouddn.com/mac2.png" alt="&quot;mac2&quot;"></li>
+<li>在磁盘工具里进行分区<br><img src="http://q1kfgxn5f.bkt.clouddn.com/mac3.png" alt="&quot;mac3&quot;"></li>
+<li>后续都是基本配置的问题了。祝你安装成功！</li>
+</ul>
+<h2 id="四、关于Mac的优化"><a href="#四、关于Mac的优化" class="headerlink" title="四、关于Mac的优化"></a>四、关于Mac的优化</h2><ul>
+<li><code>辅助功能</code>-&gt; 勾上减少透明度</li>
+<li>安装<code>beamoff</code>，流程图会有所提升，但不要期望与苹果电脑媲美。可以网上搜索安装方法。也可以在评论里面与我联系！</li>
+</ul>
+<p>转载请注明原地址，BiWin的博客：<a href="http://mybiwin.top" target="_blank" rel="noopener">http://mybiwin.top</a> 谢谢！</p>
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/Vmware/" rel="tag">Vmware</a>
 
             </div>
-            
-                <div class="postShorten-excerpt">
-                    <p>国外大神的一个Hexo主题风格，<a href="https://github.com/LouisBarranqueiro/hexo-theme-tranquilpeak" target="_blank" rel="noopener">github地址</a>，目前支持的东西较少，但是整体风格甚是喜欢呐！</p>
-                    
-                        <a
-                            href="/2019/11/26/hexo-theme-tranquilpeak/"
-                            class="postShorten-excerpt_link link"
-                            aria-label=": 个性主题配置"
-                        >
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a
-                href="/2019/11/26/hexo-theme-tranquilpeak/"
-                aria-label=": 个性主题配置"
-            >
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://q1kfgxn5f.bkt.clouddn.com/city.jpg"/>
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2019/11/26/hexo-setup/"
-                            aria-label=": Hexo+Gitee搭建个人博客教程"
-                        >
-                            Hexo+Gitee搭建个人博客教程
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-11-26T12:30:15+08:00">
-	
-		    11月 26, 2019
-    	
-    </time>
-    
-        <span>发布在 </span>
-        
-    <a class="category-link" href="/categories/Hexo/">Hexo</a>, <a class="category-link" href="/categories/Hexo/Blog/">Blog</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <blockquote>
-<p>哎，以前搭建过<a href="http://mybiwin.top" target="_blank" rel="noopener">个人博客</a>，当时使用github，一是网速比较慢，二是当时配置的主题由于电脑格式化，<br>基本上无法还原了，github也没提交主题里面的东西。so?也算是好消息，近期打算重新改造主题，发现Gitee也支持pages了。哈哈哈哈，因祸得福！</p>
-</blockquote>
-                    
-                        <a
-                            href="/2019/11/26/hexo-setup/"
-                            class="postShorten-excerpt_link link"
-                            aria-label=": Hexo+Gitee搭建个人博客教程"
-                        >
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a
-                href="/2019/11/26/hexo-setup/"
-                aria-label=": Hexo+Gitee搭建个人博客教程"
-            >
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://q1kfgxn5f.bkt.clouddn.com/gitee.png"/>
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    <div class="pagination-bar">
-    <ul class="pagination">
         
         
-        <li class="pagination-number">第 1 页 共 1 页</li>
-    </ul>
-</div>
-
-</section>
+        
+    </div>
+</article>
 
 
 

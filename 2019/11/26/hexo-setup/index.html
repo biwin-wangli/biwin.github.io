@@ -15,19 +15,19 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Mr.WangLi","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"\n\n\n\n\n环境准备\n安装Nodejs（必须）\n作用：用来生成静态页面的 到Node.js官网下载相应平台的最新版本，一路安装即可。\n\n安装Git（必须）\n作用：哈哈， 这都不懂？好吧，还是简单说下，就是提交代码的工具而已。\n\n注册Gitee账号。（必须）\n作用：是用来做博客的代码仓库、并用它来展示我们的博客，就不用单独在申请域名了。 \n\n\n搭建博客\n先在Gitee个人中心右上角点击“+”号，创建一个仓库，名字、路径都可以随意，不过我建议与个人空间地址的名字一致。个人空间地址查看ok，准备好就先放着。\n\n初始化Hexo12345678910111213141516171819#npm 全局安装hexo-cli脚手架 npm install hexo-cli -g #查看hexo版本hexo -v#在指定目录创建hexo项目，例如想创建的目录位置为E:/myblogcd E:hexo init myblogcd myblognpm install#编译生成blog页面hexo generate#启动服务hexo server#此时使用浏览器打开http://localhost:4000，怎么样？看到你自己的博客了吧！\n对接Gitee的仓库\n配置Gitee 提交代码地址\n\n在新建的hexo的博客代码里根目录有一个_config.yml的文件，其中有如下所示代码就是做git push推送的\n12345678910111213deploy:  type: git  repo: https://gitee.com/biwin/biwin.git  branch: master![&quot;repo&quot;](repo_addr.png)# 在项目根目录下，执行git config --global user.name空格+你的码云的名字git config --global user.email空格+你的码云的邮箱# 安装git推送插件npm install hexo-deployer-git --save\n\n然后就进行发布代码，一般发布代码之前最好在本地看下是否正常\n\n12345678910111213#启动服务在本地访问localhost:4000查看hexo s #清理本地文件hexo clean#生成hexo g#发布，部署hexo d # 再回到Gitee网站上，刷新页面到我们的仓库中，可以发现本地的博客内容已经部署到Gitee仓库中了。\n\n启用Gitee提供的免费域名\n在项目首页 -&gt; 服务 -&gt; Gitee Pages第一次用的用户，需要先绑定手机号，绑定成功后，选择对应的分支，点击部署，Gitee将生成地址。现在我们直接就可以用这个域名访问咯ps:想去掉blog直接访问？想用HTTPS?想把Github的项目直接迁移到Gitee上？都可以点我\n\n一些常用命令1234567891011121314hexo new &quot;postName&quot; #新建文章hexo new page &quot;pageName&quot; #新建页面hexo generate #生成静态页面至public目录hexo server #开启预览访问端口（默认端口4000，&apos;ctrl + c&apos;关闭server）hexo deploy #将.deploy目录部署到GitHubhexo help  #查看帮助hexo version  #查看Hexo的版本您可执行下列的其中一个命令，让 Hexo 在生成完毕后自动部署网站，两个命令的作用是相同的。hexo generate --deployhexo deploy --generate上面两个命令可以简写为hexo g -dhexo d -g\n转载请注明原地址，BiWin的博客：http://biwin.site 谢谢！","dateCreated":"2019-11-26T12:30:15+08:00","dateModified":"2019-11-26T20:24:02+08:00","datePublished":"2019-11-26T12:30:15+08:00","description":"\n哎，以前搭建过个人博客，当时使用github，一是网速比较慢，二是当时配置的主题由于电脑格式化，基本上无法还原了，github也没提交主题里面的东西。so?也算是好消息，近期打算重新改造主题，发现Gitee也支持pages了。哈哈哈哈，因祸得福！\n","headline":"Hexo+Gitee搭建个人博客教程","image":["http://q1kfgxn5f.bkt.clouddn.com/gitee.png","http://q1kfgxn5f.bkt.clouddn.com/gitee.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"/2019/11/26/hexo-setup/"},"publisher":{"@type":"Organization","name":"Mr.WangLi","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"/2019/11/26/hexo-setup/","keywords":"Hexo","thumbnailUrl":"http://q1kfgxn5f.bkt.clouddn.com/gitee.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Mr.WangLi","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"\n\n\n\n\n环境准备\n安装Nodejs（必须）\n作用：用来生成静态页面的 到Node.js官网下载相应平台的最新版本，一路安装即可。\n\n安装Git（必须）\n作用：哈哈， 这都不懂？好吧，还是简单说下，就是提交代码的工具而已。\n\n注册Gitee账号。（必须）\n作用：是用来做博客的代码仓库、并用它来展示我们的博客，就不用单独在申请域名了。 \n\n\n搭建博客\n先在Gitee个人中心右上角点击“+”号，创建一个仓库，名字、路径都可以随意，不过我建议与个人空间地址的名字一致。个人空间地址查看ok，准备好就先放着。\n\n初始化Hexo12345678910111213141516171819#npm 全局安装hexo-cli脚手架 npm install hexo-cli -g #查看hexo版本hexo -v#在指定目录创建hexo项目，例如想创建的目录位置为E:/myblogcd E:hexo init myblogcd myblognpm install#编译生成blog页面hexo generate#启动服务hexo server#此时使用浏览器打开http://localhost:4000，怎么样？看到你自己的博客了吧！\n对接Gitee的仓库\n配置Gitee 提交代码地址\n\n在新建的hexo的博客代码里根目录有一个_config.yml的文件，其中有如下所示代码就是做git push推送的\n12345678910111213deploy:  type: git  repo: https://gitee.com/biwin/biwin.git  branch: master![&quot;repo&quot;](repo_addr.png)# 在项目根目录下，执行git config --global user.name空格+你的码云的名字git config --global user.email空格+你的码云的邮箱# 安装git推送插件npm install hexo-deployer-git --save\n\n然后就进行发布代码，一般发布代码之前最好在本地看下是否正常\n\n12345678910111213#启动服务在本地访问localhost:4000查看hexo s #清理本地文件hexo clean#生成hexo g#发布，部署hexo d # 再回到Gitee网站上，刷新页面到我们的仓库中，可以发现本地的博客内容已经部署到Gitee仓库中了。\n\n启用Gitee提供的免费域名\n在项目首页 -&gt; 服务 -&gt; Gitee Pages第一次用的用户，需要先绑定手机号，绑定成功后，选择对应的分支，点击部署，Gitee将生成地址。现在我们直接就可以用这个域名访问咯ps:想去掉blog直接访问？想用HTTPS?想把Github的项目直接迁移到Gitee上？都可以点我\n\n一些常用命令1234567891011121314hexo new &quot;postName&quot; #新建文章hexo new page &quot;pageName&quot; #新建页面hexo generate #生成静态页面至public目录hexo server #开启预览访问端口（默认端口4000，&apos;ctrl + c&apos;关闭server）hexo deploy #将.deploy目录部署到GitHubhexo help  #查看帮助hexo version  #查看Hexo的版本您可执行下列的其中一个命令，让 Hexo 在生成完毕后自动部署网站，两个命令的作用是相同的。hexo generate --deployhexo deploy --generate上面两个命令可以简写为hexo g -dhexo d -g\n转载请注明原地址，BiWin的博客：http://biwin.site 谢谢！","dateCreated":"2019-11-26T12:30:15+08:00","dateModified":"2019-11-26T20:58:02+08:00","datePublished":"2019-11-26T12:30:15+08:00","description":"\n哎，以前搭建过个人博客，当时使用github，一是网速比较慢，二是当时配置的主题由于电脑格式化，基本上无法还原了，github也没提交主题里面的东西。so?也算是好消息，近期打算重新改造主题，发现Gitee也支持pages了。哈哈哈哈，因祸得福！\n","headline":"Hexo+Gitee搭建个人博客教程","image":["http://q1kfgxn5f.bkt.clouddn.com/gitee.png","http://q1kfgxn5f.bkt.clouddn.com/gitee.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://biwin.site/2019/11/26/hexo-setup/"},"publisher":{"@type":"Organization","name":"Mr.WangLi","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"http://biwin.site/2019/11/26/hexo-setup/","keywords":"Hexo","thumbnailUrl":"http://q1kfgxn5f.bkt.clouddn.com/gitee.png"}</script>
     <meta name="description" content="使用Hexo和Gitee搭建个人博客">
 <meta name="keywords" content="nodejs,gitee,hexo">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Hexo+Gitee搭建个人博客教程">
-<meta property="og:url" content="&#x2F;2019&#x2F;11&#x2F;26&#x2F;hexo-setup&#x2F;index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;biwin.site&#x2F;2019&#x2F;11&#x2F;26&#x2F;hexo-setup&#x2F;index.html">
 <meta property="og:site_name" content="BiWin&#39;s Blog">
 <meta property="og:description" content="使用Hexo和Gitee搭建个人博客">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:image" content="&#x2F;2019&#x2F;11&#x2F;26&#x2F;hexo-setup&#x2F;gitee_pages.png">
-<meta property="og:updated_time" content="2019-11-26T12:24:02.999Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;biwin.site&#x2F;2019&#x2F;11&#x2F;26&#x2F;hexo-setup&#x2F;gitee_pages.png">
+<meta property="og:updated_time" content="2019-11-26T12:58:02.584Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="&#x2F;2019&#x2F;11&#x2F;26&#x2F;hexo-setup&#x2F;gitee_pages.png">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;biwin.site&#x2F;2019&#x2F;11&#x2F;26&#x2F;hexo-setup&#x2F;gitee_pages.png">
     
     
         
@@ -41,20 +41,6 @@
         <meta property="og:image" content="http://q1kfgxn5f.bkt.clouddn.com/gitee.png"/>
         <meta class="swiftype" name="image" data-type="enum" content="http://q1kfgxn5f.bkt.clouddn.com/gitee.png"/>
     
-    
-        
-            <meta property="og:image" content="/2019/11/26/hexo-setup/image-3.jpg"/>
-            <meta class="swiftype" name="image" data-type="enum" content="/2019/11/26/hexo-setup/image-3.jpg"/>
-        
-            <meta property="og:image" content="/2019/11/26/hexo-setup/image-4.png"/>
-            <meta class="swiftype" name="image" data-type="enum" content="/2019/11/26/hexo-setup/image-4.png"/>
-        
-            <meta property="og:image" content="http://i.imgur.com/o9r19kD.jpg"/>
-            <meta class="swiftype" name="image" data-type="enum" content="http://i.imgur.com/o9r19kD.jpg"/>
-        
-            <meta property="og:image" content="https://example.com/orignal.jpg"/>
-            <meta class="swiftype" name="image" data-type="enum" content="https://example.com/orignal.jpg"/>
-        
     
     <!--STYLES-->
     <link rel="stylesheet" href="/assets/css/style-bun2u97ewps5wnwfarkxs9g2ppktly8u6zajld17ehqi9t4njwfv4kllprve.min.css">
@@ -190,10 +176,7 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link "
-                             href="https://github.com/"
-                            title="GitHub"
-                        >
+                        <a  class="sidebar-button-link " href="https://github.com/" target="_blank" rel="noopener" title="GitHub">
                     
                         <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">GitHub</span>
@@ -202,10 +185,7 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link "
-                             href="http://stackoverflow.com/users"
-                            title="Stack Overflow"
-                        >
+                        <a  class="sidebar-button-link " href="http://stackoverflow.com/users" target="_blank" rel="noopener" title="Stack Overflow">
                     
                         <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">Stack Overflow</span>
@@ -214,10 +194,7 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link "
-                             href="https://twitter.com/"
-                            title="Twitter"
-                        >
+                        <a  class="sidebar-button-link " href="https://twitter.com/" target="_blank" rel="noopener" title="Twitter">
                     
                         <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">Twitter</span>
@@ -226,10 +203,7 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link "
-                             href="https://facebook.com/"
-                            title="Facebook"
-                        >
+                        <a  class="sidebar-button-link " href="https://facebook.com/" target="_blank" rel="noopener" title="Facebook">
                     
                         <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">Facebook</span>
@@ -238,10 +212,7 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link "
-                             href="https://plus.google.com/"
-                            title="Google Plus"
-                        >
+                        <a  class="sidebar-button-link " href="https://plus.google.com/" target="_blank" rel="noopener" title="Google Plus">
                     
                         <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">Google Plus</span>
@@ -250,10 +221,7 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link "
-                             href="https://www.linkedin.com/profile/"
-                            title="LinkedIn"
-                        >
+                        <a  class="sidebar-button-link " href="https://www.linkedin.com/profile/" target="_blank" rel="noopener" title="LinkedIn">
                     
                         <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">LinkedIn</span>
@@ -331,18 +299,18 @@
 
 
 <h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><ul>
-<li><p>安装<a href="http://nodejs.cn/">Nodejs</a>（必须）</p>
+<li><p>安装<a href="http://nodejs.cn/" target="_blank" rel="noopener">Nodejs</a>（必须）</p>
 <p>作用：用来生成静态页面的 到Node.js官网下载相应平台的最新版本，一路安装即可。</p>
 </li>
-<li><p>安装<a href="https://www.git-scm.com/downloads">Git</a>（必须）</p>
+<li><p>安装<a href="https://www.git-scm.com/downloads" target="_blank" rel="noopener">Git</a>（必须）</p>
 <p>作用：哈哈， 这都不懂？好吧，还是简单说下，就是提交代码的工具而已。</p>
 </li>
-<li><p>注册<a href="https://gitee.com/">Gitee</a>账号。（必须）</p>
+<li><p>注册<a href="https://gitee.com/" target="_blank" rel="noopener">Gitee</a>账号。（必须）</p>
 <p>作用：是用来做博客的代码仓库、并用它来展示我们的博客，就不用单独在申请域名了。 </p>
 </li>
 </ul>
 <h2 id="搭建博客"><a href="#搭建博客" class="headerlink" title="搭建博客"></a>搭建博客</h2><blockquote>
-<p>先在Gitee个人中心右上角点击“+”号，创建一个仓库，名字、路径都可以随意，不过我建议与个人空间地址的名字一致。<br><a href="https://gitee.com/profile">个人空间地址查看</a><br>ok，准备好就先放着。</p>
+<p>先在Gitee个人中心右上角点击“+”号，创建一个仓库，名字、路径都可以随意，不过我建议与个人空间地址的名字一致。<br><a href="https://gitee.com/profile" target="_blank" rel="noopener">个人空间地址查看</a><br>ok，准备好就先放着。</p>
 </blockquote>
 <h3 id="初始化Hexo"><a href="#初始化Hexo" class="headerlink" title="初始化Hexo"></a>初始化Hexo</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#npm 全局安装hexo-cli脚手架 </span><br><span class="line">npm install hexo-cli -g </span><br><span class="line"></span><br><span class="line">#查看hexo版本</span><br><span class="line">hexo -v</span><br><span class="line"></span><br><span class="line">#在指定目录创建hexo项目，例如想创建的目录位置为E:/myblog</span><br><span class="line">cd E:</span><br><span class="line">hexo init myblog</span><br><span class="line">cd myblog</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line">#编译生成blog页面</span><br><span class="line">hexo generate</span><br><span class="line"></span><br><span class="line">#启动服务</span><br><span class="line">hexo server</span><br><span class="line"></span><br><span class="line">#此时使用浏览器打开http://localhost:4000，怎么样？看到你自己的博客了吧！</span><br></pre></td></tr></table></figure>
 <h2 id="对接Gitee的仓库"><a href="#对接Gitee的仓库" class="headerlink" title="对接Gitee的仓库"></a>对接Gitee的仓库</h2><ul>
@@ -356,92 +324,11 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#启动服务在本地访问localhost:4000查看</span><br><span class="line">hexo s </span><br><span class="line"></span><br><span class="line">#清理本地文件</span><br><span class="line">hexo clean</span><br><span class="line"></span><br><span class="line">#生成</span><br><span class="line">hexo g</span><br><span class="line"></span><br><span class="line">#发布，部署</span><br><span class="line">hexo d</span><br><span class="line"> </span><br><span class="line"># 再回到Gitee网站上，刷新页面到我们的仓库中，可以发现本地的博客内容已经部署到Gitee仓库中了。</span><br></pre></td></tr></table></figure>
 
 <h2 id="启用Gitee提供的免费域名"><a href="#启用Gitee提供的免费域名" class="headerlink" title="启用Gitee提供的免费域名"></a>启用Gitee提供的免费域名</h2><blockquote>
-<p>在项目首页 -&gt; 服务 -&gt; Gitee Pages<br><img src="gitee_pages.png" alt="&quot;giteePage&quot;"><br>第一次用的用户，需要先绑定手机号，绑定成功后，选择对应的分支，点击部署，Gitee将生成地址。<br>现在我们直接就可以用这个域名访问咯<br><code>ps</code>:想去掉blog直接访问？想用HTTPS?想把Github的项目直接迁移到Gitee上？<a href="https://gitee.com/help/articles/4136">都可以点我</a></p>
+<p>在项目首页 -&gt; 服务 -&gt; Gitee Pages<br><img src="gitee_pages.png" alt="&quot;giteePage&quot;"><br>第一次用的用户，需要先绑定手机号，绑定成功后，选择对应的分支，点击部署，Gitee将生成地址。<br>现在我们直接就可以用这个域名访问咯<br><code>ps</code>:想去掉blog直接访问？想用HTTPS?想把Github的项目直接迁移到Gitee上？<a href="https://gitee.com/help/articles/4136" target="_blank" rel="noopener">都可以点我</a></p>
 </blockquote>
 <h2 id="一些常用命令"><a href="#一些常用命令" class="headerlink" title="一些常用命令"></a>一些常用命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;postName&quot; #新建文章</span><br><span class="line">hexo new page &quot;pageName&quot; #新建页面</span><br><span class="line">hexo generate #生成静态页面至public目录</span><br><span class="line">hexo server #开启预览访问端口（默认端口4000，&apos;ctrl + c&apos;关闭server）</span><br><span class="line">hexo deploy #将.deploy目录部署到GitHub</span><br><span class="line">hexo help  #查看帮助</span><br><span class="line">hexo version  #查看Hexo的版本</span><br><span class="line"></span><br><span class="line">您可执行下列的其中一个命令，让 Hexo 在生成完毕后自动部署网站，两个命令的作用是相同的。</span><br><span class="line">hexo generate --deploy</span><br><span class="line">hexo deploy --generate</span><br><span class="line">上面两个命令可以简写为</span><br><span class="line">hexo g -d</span><br><span class="line">hexo d -g</span><br></pre></td></tr></table></figure>
 <p>转载请注明原地址，BiWin的博客：<a href="http://biwin.site">http://biwin.site</a> 谢谢！</p>
             
-
-    
-    <div class="image-gallery">
-        <div class="image-gallery-metabar">
-            <span>画廊: 4 图片</span>
-        </div>
-        <div class="image-gallery-photos image-gallery-photos--thumbnail">
-            
-            
-            <div class="photo-box">
-                <a
-                    class="photo-box-inner fancybox"
-                    data-fancybox="gallery-ck3fuxis400006sv10dfkff87"
-                    data-caption="New York"
-                    title="New York"
-                    href="/2019/11/26/hexo-setup/image-3.jpg"
-                    aria-label=""
-                >
-                    
-
-                        <img
-                                class="photo" src="/2019/11/26/hexo-setup/image-3.jpg"
-                        >
-                    
-                </a>
-            </div>
-            
-            
-            <div class="photo-box">
-                <a
-                    class="photo-box-inner fancybox"
-                    data-fancybox="gallery-ck3fuxis400006sv10dfkff87"
-                    data-caption="Paris"
-                    title="Paris"
-                    href="/2019/11/26/hexo-setup/image-4.png"
-                    aria-label=""
-                >
-                    
-
-                        <img
-                                class="photo" src="/2019/11/26/hexo-setup/image-4.png"
-                        >
-                    
-                </a>
-            </div>
-            
-            
-            <div class="photo-box">
-                <a
-                    class="photo-box-inner fancybox"
-                    data-fancybox="gallery-ck3fuxis400006sv10dfkff87"
-                    data-caption="Dubai"
-                    title="Dubai"
-                    href="http://i.imgur.com/o9r19kD.jpg"
-                    aria-label=""
-                >
-                    
-
-                        <img
-                                class="photo" src="http://i.imgur.com/o9r19kD.jpg"
-                        >
-                    
-                </a>
-            </div>
-            
-            
-            <div class="photo-box">
-                <a
-                    class="photo-box-inner fancybox"
-                    data-fancybox="gallery-ck3fuxis400006sv10dfkff87"
-                    data-caption="Sidney"
-                    title="Sidney"
-                    href="https://example.com/orignal.jpg"
-                    aria-label=""
-                >
-                    
-                </a>
-            </div>
-            
-        </div>
-    </div>
 
 
         </div>
@@ -522,8 +409,8 @@
                     <div class="media-left">
                         <a
                             class="link-unstyled"
-                            href="/2017/12/10/about-we/"
-                            aria-label=": 关于我们"
+                            href="http://biwin.site/2017/12/10/about-we/"
+                            aria-label=": 眼中的我们"
                         >
                             <img class="media-image" src="http://q1kfgxn5f.bkt.clouddn.com/we.jpg" width="90" height="90"/>
                         </a>
@@ -532,10 +419,10 @@
                     <div class="media-body">
                         <a
                             class="link-unstyled"
-                            href="/2017/12/10/about-we/"
-                            aria-label=": 关于我们"
+                            href="http://biwin.site/2017/12/10/about-we/"
+                            aria-label=": 眼中的我们"
                         >
-                            <h3 class="media-heading">关于我们</h3>
+                            <h3 class="media-heading">眼中的我们</h3>
                         </a>
                         <span class="media-meta">
                             <span class="media-date text-small">
@@ -544,7 +431,7 @@
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>回忆中的青春</p></div>
+                        <div class="media-content hide-xs font-merryweather"><p>现在的努力是为了以后老了美好回忆不带遗憾，没有后悔的借口，仅此而已。</p></div>
                     </div>
                     <div style="clear:both;"></div>
                     <hr>
@@ -555,7 +442,106 @@
                     <div class="media-left">
                         <a
                             class="link-unstyled"
-                            href="/2019/11/26/hexo-setup/"
+                            href="http://biwin.site/2017/12/11/%E8%99%9A%E6%8B%9F%E6%9C%BA-12-5-7-%E5%AE%89%E8%A3%85Mac%E7%B3%BB%E7%BB%9F/"
+                            aria-label=": 虚拟机(12.5.7)安装Mac系统"
+                        >
+                            <img class="media-image" src="http://q1kfgxn5f.bkt.clouddn.com/macos.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a
+                            class="link-unstyled"
+                            href="http://biwin.site/2017/12/11/%E8%99%9A%E6%8B%9F%E6%9C%BA-12-5-7-%E5%AE%89%E8%A3%85Mac%E7%B3%BB%E7%BB%9F/"
+                            aria-label=": 虚拟机(12.5.7)安装Mac系统"
+                        >
+                            <h3 class="media-heading">虚拟机(12.5.7)安装Mac系统</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年12月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>哈哈，买不起mac，只能玩玩黑苹果，仅为记录自己搭建过程。</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a
+                            class="link-unstyled"
+                            href="http://biwin.site/2017/12/17/weblogic-install-domain/"
+                            aria-label=": Weblogic新建Domain"
+                        >
+                            <img class="media-image" src="http://q1kfgxn5f.bkt.clouddn.com/Weblogic.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a
+                            class="link-unstyled"
+                            href="http://biwin.site/2017/12/17/weblogic-install-domain/"
+                            aria-label=": Weblogic新建Domain"
+                        >
+                            <h3 class="media-heading">Weblogic新建Domain</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年12月17日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>Weblogic新建Domain启动报Could not create the Java Virtual Machine的解决方案</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a
+                            class="link-unstyled"
+                            href="http://biwin.site/2018/01/06/jeecmsv9f-install/"
+                            aria-label=": 关于JeecmsV9源码版本机部署"
+                        >
+                            <img class="media-image" src="http://q1kfgxn5f.bkt.clouddn.com/Jeecms.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a
+                            class="link-unstyled"
+                            href="http://biwin.site/2018/01/06/jeecmsv9f-install/"
+                            aria-label=": 关于JeecmsV9源码版本机部署"
+                        >
+                            <h3 class="media-heading">关于JeecmsV9源码版本机部署</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2018年1月6日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>基于java技术研发的内容管理系统，灵活的内容管理模式，强大的工作引擎，全方位的安全防护</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a
+                            class="link-unstyled"
+                            href="http://biwin.site/2019/11/26/hexo-setup/"
                             aria-label=": Hexo+Gitee搭建个人博客教程"
                         >
                             <img class="media-image" src="http://q1kfgxn5f.bkt.clouddn.com/gitee.png" width="90" height="90"/>
@@ -565,7 +551,7 @@
                     <div class="media-body">
                         <a
                             class="link-unstyled"
-                            href="/2019/11/26/hexo-setup/"
+                            href="http://biwin.site/2019/11/26/hexo-setup/"
                             aria-label=": Hexo+Gitee搭建个人博客教程"
                         >
                             <h3 class="media-heading">Hexo+Gitee搭建个人博客教程</h3>
@@ -578,7 +564,7 @@
                             </span>
                         </span>
                         <div class="media-content hide-xs font-merryweather"><blockquote>
-<p>哎，以前搭建过<a href="http://mybiwin.top">个人博客</a>，当时使用github，一是网速比较慢，二是当时配置的主题由于电脑格式化，<br>基本上无法还原了，github也没提交主题里面的东西。so?也算是好消息，近期打算重新改造主题，发现Gitee也支持pages了。哈哈哈哈，因祸得福！</p>
+<p>哎，以前搭建过<a href="http://mybiwin.top" target="_blank" rel="noopener">个人博客</a>，当时使用github，一是网速比较慢，二是当时配置的主题由于电脑格式化，<br>基本上无法还原了，github也没提交主题里面的东西。so?也算是好消息，近期打算重新改造主题，发现Gitee也支持pages了。哈哈哈哈，因祸得福！</p>
 </blockquote></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -590,7 +576,7 @@
                     <div class="media-left">
                         <a
                             class="link-unstyled"
-                            href="/2019/11/26/hexo-theme-tranquilpeak/"
+                            href="http://biwin.site/2019/11/26/hexo-theme-tranquilpeak/"
                             aria-label=": 个性主题配置"
                         >
                             <img class="media-image" src="http://q1kfgxn5f.bkt.clouddn.com/city.jpg" width="90" height="90"/>
@@ -600,7 +586,7 @@
                     <div class="media-body">
                         <a
                             class="link-unstyled"
-                            href="/2019/11/26/hexo-theme-tranquilpeak/"
+                            href="http://biwin.site/2019/11/26/hexo-theme-tranquilpeak/"
                             aria-label=": 个性主题配置"
                         >
                             <h3 class="media-heading">个性主题配置</h3>
@@ -612,7 +598,7 @@
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>国外大神的一个Hexo主题风格，<a href="https://github.com/LouisBarranqueiro/hexo-theme-tranquilpeak">github地址</a>，目前支持的东西较少，但是整体风格甚是喜欢呐！</p></div>
+                        <div class="media-content hide-xs font-merryweather"><p>国外大神的一个Hexo主题风格，<a href="https://github.com/LouisBarranqueiro/hexo-theme-tranquilpeak" target="_blank" rel="noopener">github地址</a>，目前支持的东西较少，但是整体风格甚是喜欢呐！</p></div>
                     </div>
                     <div style="clear:both;"></div>
                     <hr>
@@ -625,7 +611,7 @@
                 data-message-zero="没有找到文章"
                 data-message-one="找到 1 篇文章"
                 data-message-other="找到 {n} 篇文章">
-                找到 3 篇文章
+                找到 6 篇文章
             </p>
         </div>
     </div>
