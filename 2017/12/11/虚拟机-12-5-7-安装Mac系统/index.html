@@ -15,7 +15,7 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Mr.WangLi","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"\n\n\n\n一、环境准备\n下载Vmware虚拟机我的版本是12.5.7链接：https://pan.baidu.com/s/1geQLvgf  密码：sdj3\n下载Mac系统、python、unlocker等链接: https://pan.baidu.com/s/1kUQDngF 密码: fpna\n\n二、基本步骤\n首先下载 vmware workstation，以管理员身份运行，安装点击下一步即可，注册码网盘中已提供。\n解压unlocker207至任意目录，找到win-install.cmd文件，右键以管理员身份运行。这一步骤很关键，决定了后续VM会不会识别出OS X。\n上一步可能出现不成功的情况，可以安装python后，再修改win-install.cmd，找到echo Patching...，改成如下图\n\n\n打开Vmware载入Mac OS X 10.11\n新建虚拟机，选择典型，下一步\n选择安装程序光盘映像文件，点击选择CDR镜像文件路径\n如果第二部unlocker文件没有处理好的话，这个地方可能就不会出现Apple Mac OS X。如果不行，可以多下载几个unlocker试试。版本根据实际版本选择，我的是10.11。\n名称和安装位置自己自定义，点击下一步\n点击下一步即可\n点击完成\n然后点击开启虚拟机。\n出现这个错误，你需要找到你VM的根文件，找到根文件下的 OS X xx.xx.vmx，右键用记事本方式打开，找到 smc.present = “TRUE”，在后面手动添加一句smc.version = 0，如下图。\n\n\n\n三、安装Mac\n启动新建的虚拟机\n在磁盘工具里进行分区\n后续都是基本配置的问题了。祝你安装成功！\n\n四、关于Mac的优化\n辅助功能-&gt; 勾上减少透明度\n安装beamoff，流程图会有所提升，但不要期望与苹果电脑媲美。可以网上搜索安装方法。也可以在评论里面与我联系！\n\n转载请注明原地址，BiWin的博客：http://mybiwin.top 谢谢！","dateCreated":"2017-12-11T12:44:04+08:00","dateModified":"2019-11-26T22:05:08+08:00","datePublished":"2017-12-11T12:44:04+08:00","description":"哈哈，买不起mac，只能玩玩黑苹果，仅为记录自己搭建过程。","headline":"虚拟机(12.5.7)安装Mac系统","image":["http://q1kfgxn5f.bkt.clouddn.com/macos.jpg","http://q1kfgxn5f.bkt.clouddn.com/macos.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://biwin.site/2017/12/11/%E8%99%9A%E6%8B%9F%E6%9C%BA-12-5-7-%E5%AE%89%E8%A3%85Mac%E7%B3%BB%E7%BB%9F/"},"publisher":{"@type":"Organization","name":"Mr.WangLi","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"http://biwin.site/2017/12/11/%E8%99%9A%E6%8B%9F%E6%9C%BA-12-5-7-%E5%AE%89%E8%A3%85Mac%E7%B3%BB%E7%BB%9F/","keywords":"Vmware","thumbnailUrl":"http://q1kfgxn5f.bkt.clouddn.com/macos.jpg"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Mr.WangLi","sameAs":["https://github.com/biwin","https://www.linkedin.com/profile/","mailto:274027703@qq.com"],"image":"http://q1kfgxn5f.bkt.clouddn.com/touxiang.jpg"},"articleBody":"\n\n\n\n一、环境准备\n下载Vmware虚拟机我的版本是12.5.7链接：https://pan.baidu.com/s/1geQLvgf  密码：sdj3\n下载Mac系统、python、unlocker等链接: https://pan.baidu.com/s/1kUQDngF 密码: fpna\n\n二、基本步骤\n首先下载 vmware workstation，以管理员身份运行，安装点击下一步即可，注册码网盘中已提供。\n解压unlocker207至任意目录，找到win-install.cmd文件，右键以管理员身份运行。这一步骤很关键，决定了后续VM会不会识别出OS X。\n上一步可能出现不成功的情况，可以安装python后，再修改win-install.cmd，找到echo Patching...，改成如下图\n\n\n打开Vmware载入Mac OS X 10.11\n新建虚拟机，选择典型，下一步\n选择安装程序光盘映像文件，点击选择CDR镜像文件路径\n如果第二部unlocker文件没有处理好的话，这个地方可能就不会出现Apple Mac OS X。如果不行，可以多下载几个unlocker试试。版本根据实际版本选择，我的是10.11。\n名称和安装位置自己自定义，点击下一步\n点击下一步即可\n点击完成\n然后点击开启虚拟机。\n出现这个错误，你需要找到你VM的根文件，找到根文件下的 OS X xx.xx.vmx，右键用记事本方式打开，找到 smc.present = “TRUE”，在后面手动添加一句smc.version = 0，如下图。\n\n\n\n三、安装Mac\n启动新建的虚拟机\n在磁盘工具里进行分区\n后续都是基本配置的问题了。祝你安装成功！\n\n四、关于Mac的优化\n辅助功能-&gt; 勾上减少透明度\n安装beamoff，流程图会有所提升，但不要期望与苹果电脑媲美。可以网上搜索安装方法。也可以在评论里面与我联系！\n\n转载请注明原地址，BiWin的博客：http://mybiwin.top 谢谢！","dateCreated":"2017-12-11T12:44:04+08:00","dateModified":"2019-11-26T22:05:08+08:00","datePublished":"2017-12-11T12:44:04+08:00","description":"哈哈，买不起mac，只能玩玩黑苹果，仅为记录自己搭建过程。","headline":"虚拟机(12.5.7)安装Mac系统","image":["http://q1kfgxn5f.bkt.clouddn.com/macos.jpg","http://q1kfgxn5f.bkt.clouddn.com/macos.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://biwin.site/2017/12/11/%E8%99%9A%E6%8B%9F%E6%9C%BA-12-5-7-%E5%AE%89%E8%A3%85Mac%E7%B3%BB%E7%BB%9F/"},"publisher":{"@type":"Organization","name":"Mr.WangLi","sameAs":["https://github.com/biwin","https://www.linkedin.com/profile/","mailto:274027703@qq.com"],"image":"http://q1kfgxn5f.bkt.clouddn.com/touxiang.jpg","logo":{"@type":"ImageObject","url":"http://q1kfgxn5f.bkt.clouddn.com/touxiang.jpg"}},"url":"http://biwin.site/2017/12/11/%E8%99%9A%E6%8B%9F%E6%9C%BA-12-5-7-%E5%AE%89%E8%A3%85Mac%E7%B3%BB%E7%BB%9F/","keywords":"Vmware","thumbnailUrl":"http://q1kfgxn5f.bkt.clouddn.com/macos.jpg"}</script>
     <meta name="description" content="虚拟机(12.5.7)安装Mac系统">
 <meta name="keywords" content="Vmware,运维,Macos">
 <meta property="og:type" content="blog">
@@ -45,6 +45,8 @@
         
     
     
+        <meta property="og:image" content="http://q1kfgxn5f.bkt.clouddn.com/touxiang.jpg"/>
+    
     
         <meta property="og:image" content="http://q1kfgxn5f.bkt.clouddn.com/macos.jpg"/>
         <meta class="swiftype" name="image" data-type="enum" content="http://q1kfgxn5f.bkt.clouddn.com/macos.jpg"/>
@@ -70,6 +72,10 @@
 
 
     
+        
+            
+        
+    
 
 <header id="header" data-behavior="4">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
@@ -91,6 +97,8 @@
             >
         
         
+            <img class="header-picture" src="http://q1kfgxn5f.bkt.clouddn.com/touxiang.jpg" alt="作者的图片"/>
+        
         </a>
     
 </header>
@@ -98,8 +106,26 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="4">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="阅读有关作者的更多信息"
+                >
+                    <img class="sidebar-profile-picture" src="http://q1kfgxn5f.bkt.clouddn.com/touxiang.jpg" alt="作者的图片"/>
+                </a>
+                <h4 class="sidebar-profile-name">Mr.WangLi</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>喜欢技术，喜欢一个人！</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -188,46 +214,10 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link " href="https://github.com/" target="_blank" rel="noopener" title="GitHub">
+                        <a  class="sidebar-button-link " href="https://github.com/biwin" target="_blank" rel="noopener" title="GitHub">
                     
                         <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">GitHub</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="http://stackoverflow.com/users" target="_blank" rel="noopener" title="Stack Overflow">
-                    
-                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Stack Overflow</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://twitter.com/" target="_blank" rel="noopener" title="Twitter">
-                    
-                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Twitter</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://facebook.com/" target="_blank" rel="noopener" title="Facebook">
-                    
-                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Facebook</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://plus.google.com/" target="_blank" rel="noopener" title="Google Plus">
-                    
-                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Google Plus</span>
                     </a>
             </li>
             
@@ -242,10 +232,7 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link "
-                             href="/mailto"
-                            title="邮箱"
-                        >
+                        <a  class="sidebar-button-link " href="/mailto:274027703@qq.com" target="_blank" rel="noopener" title="邮箱">
                     
                         <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">邮箱</span>
@@ -344,6 +331,10 @@
             
 
 
+            <!-- 添加的部分 -->
+            <!-- copyright -->
+            
+            <!-- copyright -->
         </div>
     </div>
     <div id="post-footer" class="post-footer main-content-wrap">
@@ -374,25 +365,37 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
         
+            <img id="about-card-picture" src="http://q1kfgxn5f.bkt.clouddn.com/touxiang.jpg" alt="作者的图片"/>
+        
             <h4 id="about-card-name">Mr.WangLi</h4>
         
-            <div id="about-card-bio"><p>author.bio</p>
+            <div id="about-card-bio"><p>喜欢技术，喜欢一个人！</p>
 </div>
         
         
             <div id="about-card-job">
                 <i class="fa fa-briefcase"></i>
                 <br/>
-                <p>author.job</p>
+                <p>一个新零售电商的全栈攻城狮</p>
 
             </div>
         
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                中国·四川·成都
+            </div>
         
     </div>
 </div>
@@ -444,7 +447,7 @@
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>现在的努力是为了以后老了美好回忆不带遗憾，没有后悔的借口，仅此而已。</p></div>
+                        <div class="media-content hide-xs font-merryweather">Here's something encrypted, password is required to continue reading.</div>
                     </div>
                     <div style="clear:both;"></div>
                     <hr>

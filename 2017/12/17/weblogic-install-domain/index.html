@@ -15,7 +15,7 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Mr.WangLi","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"\n\n\nUnrecognized option: -jrockitError: Could not create the Java Virtual Machine.Error: A fatal exception has occurred. Program will exit \n是weblogic 10.3.6 启动的时候抛出的一个错误\n在 %DOMAIN_HOME%\\bin\\startWebLogic.cmd 启动时出现的错误具体错误信息为\n12345678910111213141516starting weblogic with Java version:  Unrecognized option: -jrockit  Error: Could not create the Java Virtual Machine.  Error: A fatal exception has occurred. Program will exit.  Starting WLS with line:  D:\\DEV_ENV\\Java7\\JDK17~1.0_6\\bin\\java -jrockit   -Xms512m -Xmx512m -Dweblogic.Na  me=AdminServer -Djava.security.policy=D:\\Oracle\\MIDDLE~1\\WLSERV~1.3\\server\\lib\\w  eblogic.policy  -Xverify:none  -da -Dplatform.home=D:\\Oracle\\MIDDLE~1\\WLSERV~1.3   -Dwls.home=D:\\Oracle\\MIDDLE~1\\WLSERV~1.3\\server -Dweblogic.home=D:\\Oracle\\MIDDL  E~1\\WLSERV~1.3\\server   -Dweblogic.management.discover=true  -Dwlw.iterativeDev=   -Dwlw.testConsole= -Dwlw.logErrorsToConsole= -Dweblogic.ext.dirs=D:\\Oracle\\MIDD  LE~1\\patch_wls1035\\profiles\\default\\sysext_manifest_classpath;D:\\Oracle\\MIDDLE~1  \\patch_ocp360\\profiles\\default\\sysext_manifest_classpath  weblogic.Server  Unrecognized option: -jrockit  Error: Could not create the Java Virtual Machine.  Error: A fatal exception has occurred. Program will exit.\n出错地\n123Unrecognized option: -jrockit  Error: Could not create the Java Virtual Machine.  Error: A fatal exception has occurred. Program will exit\n\n跟着错误找原因，第一处的错误的上面一行输出信息为\n1starting weblogic with Java version:\n\n找到该行的脚本内容\n12345678910111213echo starting weblogic with Java version:    %JAVA_HOME%\\bin\\java %JAVA_VM% -version    if &quot;%WLS_REDIRECT_LOG%&quot;==&quot;&quot; (      echo Starting WLS with line:            echo %JAVA_HOME%\\bin\\java %JAVA_VM% %MEM_ARGS% -Dweblogic.Name=%SERVER_NAME% -Djava.security.policy=%WL_HOME%\\server\\lib\\weblogic.policy %JAVA_OPTIONS% %PROXY_SETTINGS% %SERVER_CLASS%      %JAVA_HOME%\\bin\\java %JAVA_VM% %MEM_ARGS% -Dweblogic.Name=%SERVER_NAME% -Djava.security.policy=%WL_HOME%\\server\\lib\\weblogic.policy %JAVA_OPTIONS% %PROXY_SETTINGS% %SERVER_CLASS%  ) else (      echo Redirecting output from WLS window to %WLS_REDIRECT_LOG%      %JAVA_HOME%\\bin\\java %JAVA_VM% %MEM_ARGS% -Dweblogic.Name=%SERVER_NAME% -Djava.security.policy=%WL_HOME%\\server\\lib\\weblogic.policy %JAVA_OPTIONS% %PROXY_SETTINGS% %SERVER_CLASS%  &gt;&quot;%WLS_REDIRECT_LOG%&quot; 2&gt;&amp;1   )\n\n分析了下，怀疑是%JAVA_VM%参数的问题\n试着将脚本修改为\n12345678910111213echo starting weblogic with Java version:  echo %JAVA_VM%  %JAVA_HOME%\\bin\\java %JAVA_VM% -version    if &quot;%WLS_REDIRECT_LOG%&quot;==&quot;&quot; (      echo Starting WLS with line:            echo %JAVA_HOME%\\bin\\java %JAVA_VM% %MEM_ARGS% -Dweblogic.Name=%SERVER_NAME% -Djava.security.policy=%WL_HOME%\\server\\lib\\weblogic.policy %JAVA_OPTIONS% %PROXY_SETTINGS% %SERVER_CLASS%      %JAVA_HOME%\\bin\\java %JAVA_VM% %MEM_ARGS% -Dweblogic.Name=%SERVER_NAME% -Djava.security.policy=%WL_HOME%\\server\\lib\\weblogic.policy %JAVA_OPTIONS% %PROXY_SETTINGS% %SERVER_CLASS%  ) else (      echo Redirecting output from WLS window to %WLS_REDIRECT_LOG%      %JAVA_HOME%\\bin\\java %JAVA_VM% %MEM_ARGS% -Dweblogic.Name=%SERVER_NAME% -Djava.security.policy=%WL_HOME%\\server\\lib\\weblogic.policy %JAVA_OPTIONS% %PROXY_SETTINGS% %SERVER_CLASS%  &gt;&quot;%WLS_REDIRECT_LOG%&quot; 2&gt;&amp;1   )\n证明， %JAVA_VM% 的内容是-jrockit，这是之前bea时候开发的一个jdk，现在用的是sun的jdk，这个参数不识别。最简单的修改方式，把启动脚本中的 %JAVA_VM% 去掉就可以了\n将脚本修改为 \n12345678910111213echo starting weblogic with Java version:    %JAVA_HOME%\\bin\\java -version    if &quot;%WLS_REDIRECT_LOG%&quot;==&quot;&quot; (      echo Starting WLS with line:            echo %JAVA_HOME%\\bin\\java %MEM_ARGS% -Dweblogic.Name=%SERVER_NAME% -Djava.security.policy=%WL_HOME%\\server\\lib\\weblogic.policy %JAVA_OPTIONS% %PROXY_SETTINGS% %SERVER_CLASS%      %JAVA_HOME%\\bin\\java %MEM_ARGS% -Dweblogic.Name=%SERVER_NAME% -Djava.security.policy=%WL_HOME%\\server\\lib\\weblogic.policy %JAVA_OPTIONS% %PROXY_SETTINGS% %SERVER_CLASS%  ) else (      echo Redirecting output from WLS window to %WLS_REDIRECT_LOG%      %JAVA_HOME%\\bin\\java %MEM_ARGS% -Dweblogic.Name=%SERVER_NAME% -Djava.security.policy=%WL_HOME%\\server\\lib\\weblogic.policy %JAVA_OPTIONS% %PROXY_SETTINGS% %SERVER_CLASS%  &gt;&quot;%WLS_REDIRECT_LOG%&quot; 2&gt;&amp;1   )\n可以正常启动了。","dateCreated":"2017-12-17T01:20:32+08:00","dateModified":"2019-11-26T22:05:17+08:00","datePublished":"2017-12-17T01:20:32+08:00","description":"Weblogic新建Domain启动报Could not create the Java Virtual Machine的解决方案","headline":"Weblogic新建Domain","image":["http://q1kfgxn5f.bkt.clouddn.com/Weblogic.jpg","http://q1kfgxn5f.bkt.clouddn.com/Weblogic.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://biwin.site/2017/12/17/weblogic-install-domain/"},"publisher":{"@type":"Organization","name":"Mr.WangLi","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"http://biwin.site/2017/12/17/weblogic-install-domain/","keywords":"Weblogic","thumbnailUrl":"http://q1kfgxn5f.bkt.clouddn.com/Weblogic.jpg"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Mr.WangLi","sameAs":["https://github.com/biwin","https://www.linkedin.com/profile/","mailto:274027703@qq.com"],"image":"http://q1kfgxn5f.bkt.clouddn.com/touxiang.jpg"},"articleBody":"\n\n\nUnrecognized option: -jrockitError: Could not create the Java Virtual Machine.Error: A fatal exception has occurred. Program will exit \n是weblogic 10.3.6 启动的时候抛出的一个错误\n在 %DOMAIN_HOME%\\bin\\startWebLogic.cmd 启动时出现的错误具体错误信息为\n12345678910111213141516starting weblogic with Java version:  Unrecognized option: -jrockit  Error: Could not create the Java Virtual Machine.  Error: A fatal exception has occurred. Program will exit.  Starting WLS with line:  D:\\DEV_ENV\\Java7\\JDK17~1.0_6\\bin\\java -jrockit   -Xms512m -Xmx512m -Dweblogic.Na  me=AdminServer -Djava.security.policy=D:\\Oracle\\MIDDLE~1\\WLSERV~1.3\\server\\lib\\w  eblogic.policy  -Xverify:none  -da -Dplatform.home=D:\\Oracle\\MIDDLE~1\\WLSERV~1.3   -Dwls.home=D:\\Oracle\\MIDDLE~1\\WLSERV~1.3\\server -Dweblogic.home=D:\\Oracle\\MIDDL  E~1\\WLSERV~1.3\\server   -Dweblogic.management.discover=true  -Dwlw.iterativeDev=   -Dwlw.testConsole= -Dwlw.logErrorsToConsole= -Dweblogic.ext.dirs=D:\\Oracle\\MIDD  LE~1\\patch_wls1035\\profiles\\default\\sysext_manifest_classpath;D:\\Oracle\\MIDDLE~1  \\patch_ocp360\\profiles\\default\\sysext_manifest_classpath  weblogic.Server  Unrecognized option: -jrockit  Error: Could not create the Java Virtual Machine.  Error: A fatal exception has occurred. Program will exit.\n出错地\n123Unrecognized option: -jrockit  Error: Could not create the Java Virtual Machine.  Error: A fatal exception has occurred. Program will exit\n\n跟着错误找原因，第一处的错误的上面一行输出信息为\n1starting weblogic with Java version:\n\n找到该行的脚本内容\n12345678910111213echo starting weblogic with Java version:    %JAVA_HOME%\\bin\\java %JAVA_VM% -version    if &quot;%WLS_REDIRECT_LOG%&quot;==&quot;&quot; (      echo Starting WLS with line:            echo %JAVA_HOME%\\bin\\java %JAVA_VM% %MEM_ARGS% -Dweblogic.Name=%SERVER_NAME% -Djava.security.policy=%WL_HOME%\\server\\lib\\weblogic.policy %JAVA_OPTIONS% %PROXY_SETTINGS% %SERVER_CLASS%      %JAVA_HOME%\\bin\\java %JAVA_VM% %MEM_ARGS% -Dweblogic.Name=%SERVER_NAME% -Djava.security.policy=%WL_HOME%\\server\\lib\\weblogic.policy %JAVA_OPTIONS% %PROXY_SETTINGS% %SERVER_CLASS%  ) else (      echo Redirecting output from WLS window to %WLS_REDIRECT_LOG%      %JAVA_HOME%\\bin\\java %JAVA_VM% %MEM_ARGS% -Dweblogic.Name=%SERVER_NAME% -Djava.security.policy=%WL_HOME%\\server\\lib\\weblogic.policy %JAVA_OPTIONS% %PROXY_SETTINGS% %SERVER_CLASS%  &gt;&quot;%WLS_REDIRECT_LOG%&quot; 2&gt;&amp;1   )\n\n分析了下，怀疑是%JAVA_VM%参数的问题\n试着将脚本修改为\n12345678910111213echo starting weblogic with Java version:  echo %JAVA_VM%  %JAVA_HOME%\\bin\\java %JAVA_VM% -version    if &quot;%WLS_REDIRECT_LOG%&quot;==&quot;&quot; (      echo Starting WLS with line:            echo %JAVA_HOME%\\bin\\java %JAVA_VM% %MEM_ARGS% -Dweblogic.Name=%SERVER_NAME% -Djava.security.policy=%WL_HOME%\\server\\lib\\weblogic.policy %JAVA_OPTIONS% %PROXY_SETTINGS% %SERVER_CLASS%      %JAVA_HOME%\\bin\\java %JAVA_VM% %MEM_ARGS% -Dweblogic.Name=%SERVER_NAME% -Djava.security.policy=%WL_HOME%\\server\\lib\\weblogic.policy %JAVA_OPTIONS% %PROXY_SETTINGS% %SERVER_CLASS%  ) else (      echo Redirecting output from WLS window to %WLS_REDIRECT_LOG%      %JAVA_HOME%\\bin\\java %JAVA_VM% %MEM_ARGS% -Dweblogic.Name=%SERVER_NAME% -Djava.security.policy=%WL_HOME%\\server\\lib\\weblogic.policy %JAVA_OPTIONS% %PROXY_SETTINGS% %SERVER_CLASS%  &gt;&quot;%WLS_REDIRECT_LOG%&quot; 2&gt;&amp;1   )\n证明， %JAVA_VM% 的内容是-jrockit，这是之前bea时候开发的一个jdk，现在用的是sun的jdk，这个参数不识别。最简单的修改方式，把启动脚本中的 %JAVA_VM% 去掉就可以了\n将脚本修改为 \n12345678910111213echo starting weblogic with Java version:    %JAVA_HOME%\\bin\\java -version    if &quot;%WLS_REDIRECT_LOG%&quot;==&quot;&quot; (      echo Starting WLS with line:            echo %JAVA_HOME%\\bin\\java %MEM_ARGS% -Dweblogic.Name=%SERVER_NAME% -Djava.security.policy=%WL_HOME%\\server\\lib\\weblogic.policy %JAVA_OPTIONS% %PROXY_SETTINGS% %SERVER_CLASS%      %JAVA_HOME%\\bin\\java %MEM_ARGS% -Dweblogic.Name=%SERVER_NAME% -Djava.security.policy=%WL_HOME%\\server\\lib\\weblogic.policy %JAVA_OPTIONS% %PROXY_SETTINGS% %SERVER_CLASS%  ) else (      echo Redirecting output from WLS window to %WLS_REDIRECT_LOG%      %JAVA_HOME%\\bin\\java %MEM_ARGS% -Dweblogic.Name=%SERVER_NAME% -Djava.security.policy=%WL_HOME%\\server\\lib\\weblogic.policy %JAVA_OPTIONS% %PROXY_SETTINGS% %SERVER_CLASS%  &gt;&quot;%WLS_REDIRECT_LOG%&quot; 2&gt;&amp;1   )\n可以正常启动了。","dateCreated":"2017-12-17T01:20:32+08:00","dateModified":"2019-11-26T22:05:17+08:00","datePublished":"2017-12-17T01:20:32+08:00","description":"Weblogic新建Domain启动报Could not create the Java Virtual Machine的解决方案","headline":"Weblogic新建Domain","image":["http://q1kfgxn5f.bkt.clouddn.com/Weblogic.jpg","http://q1kfgxn5f.bkt.clouddn.com/Weblogic.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://biwin.site/2017/12/17/weblogic-install-domain/"},"publisher":{"@type":"Organization","name":"Mr.WangLi","sameAs":["https://github.com/biwin","https://www.linkedin.com/profile/","mailto:274027703@qq.com"],"image":"http://q1kfgxn5f.bkt.clouddn.com/touxiang.jpg","logo":{"@type":"ImageObject","url":"http://q1kfgxn5f.bkt.clouddn.com/touxiang.jpg"}},"url":"http://biwin.site/2017/12/17/weblogic-install-domain/","keywords":"Weblogic","thumbnailUrl":"http://q1kfgxn5f.bkt.clouddn.com/Weblogic.jpg"}</script>
     <meta name="description" content="Weblogic新建Domain启动报Could not create the Java Virtual Machine">
 <meta name="keywords" content="Weblogic,运维">
 <meta property="og:type" content="blog">
@@ -30,6 +30,8 @@
     
         
     
+    
+        <meta property="og:image" content="http://q1kfgxn5f.bkt.clouddn.com/touxiang.jpg"/>
     
     
         <meta property="og:image" content="http://q1kfgxn5f.bkt.clouddn.com/Weblogic.jpg"/>
@@ -49,6 +51,8 @@
 
     
         
+            <link rel="stylesheet" href="/assets/css/gitment.css">
+        
     
 </head>
 
@@ -57,6 +61,10 @@
             <!-- Define author's picture -->
 
 
+    
+        
+            
+        
     
 
 <header id="header" data-behavior="4">
@@ -79,6 +87,8 @@
             >
         
         
+            <img class="header-picture" src="http://q1kfgxn5f.bkt.clouddn.com/touxiang.jpg" alt="作者的图片"/>
+        
         </a>
     
 </header>
@@ -86,8 +96,26 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="4">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="阅读有关作者的更多信息"
+                >
+                    <img class="sidebar-profile-picture" src="http://q1kfgxn5f.bkt.clouddn.com/touxiang.jpg" alt="作者的图片"/>
+                </a>
+                <h4 class="sidebar-profile-name">Mr.WangLi</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>喜欢技术，喜欢一个人！</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -176,46 +204,10 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link " href="https://github.com/" target="_blank" rel="noopener" title="GitHub">
+                        <a  class="sidebar-button-link " href="https://github.com/biwin" target="_blank" rel="noopener" title="GitHub">
                     
                         <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">GitHub</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="http://stackoverflow.com/users" target="_blank" rel="noopener" title="Stack Overflow">
-                    
-                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Stack Overflow</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://twitter.com/" target="_blank" rel="noopener" title="Twitter">
-                    
-                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Twitter</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://facebook.com/" target="_blank" rel="noopener" title="Facebook">
-                    
-                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Facebook</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://plus.google.com/" target="_blank" rel="noopener" title="Google Plus">
-                    
-                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Google Plus</span>
                     </a>
             </li>
             
@@ -230,10 +222,7 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link "
-                             href="/mailto"
-                            title="邮箱"
-                        >
+                        <a  class="sidebar-button-link " href="/mailto:274027703@qq.com" target="_blank" rel="noopener" title="邮箱">
                     
                         <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">邮箱</span>
@@ -319,6 +308,10 @@
             
 
 
+            <!-- 添加的部分 -->
+            <!-- copyright -->
+            
+            <!-- copyright -->
         </div>
     </div>
     <div id="post-footer" class="post-footer main-content-wrap">
@@ -332,6 +325,8 @@
         
         
         
+            
+                <div id="gitment"></div>
             
         
     </div>
@@ -351,25 +346,37 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
         
+            <img id="about-card-picture" src="http://q1kfgxn5f.bkt.clouddn.com/touxiang.jpg" alt="作者的图片"/>
+        
             <h4 id="about-card-name">Mr.WangLi</h4>
         
-            <div id="about-card-bio"><p>author.bio</p>
+            <div id="about-card-bio"><p>喜欢技术，喜欢一个人！</p>
 </div>
         
         
             <div id="about-card-job">
                 <i class="fa fa-briefcase"></i>
                 <br/>
-                <p>author.job</p>
+                <p>一个新零售电商的全栈攻城狮</p>
 
             </div>
         
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                中国·四川·成都
+            </div>
         
     </div>
 </div>
@@ -421,7 +428,7 @@
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>现在的努力是为了以后老了美好回忆不带遗憾，没有后悔的借口，仅此而已。</p></div>
+                        <div class="media-content hide-xs font-merryweather">Here's something encrypted, password is required to continue reading.</div>
                     </div>
                     <div style="clear:both;"></div>
                     <hr>
@@ -615,6 +622,21 @@
 <!--SCRIPTS END-->
 
 
+    
+        <script src="/assets/js/gitment.js"></script>
+        <script type="text/javascript">
+          (function() {
+            new Gitment({
+              id: 'http://biwin.site/2017/12/17/weblogic-install-domain/',
+              owner: 'biwin',
+              repo: 'https://github.com/biwin-wangli/biwin.github.io.git',
+              oauth: {
+                client_id: 'b54018f193d3f1dda047',
+                client_secret: 'e6f7645a64059193baaedfffddc5a417fa800e6d'
+              }
+            }).render('gitment')
+          })()
+        </script>
     
 
 
