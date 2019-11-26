@@ -1,0 +1,885 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="BiWin&#39;s Blog">
+    <title>个性主题配置 - BiWin&#39;s Blog</title>
+    <meta name="author" content="Mr.WangLi">
+    
+        <meta name="keywords" content="Hexo,Javascript,Java,Docker,Kubernetes,JVM,MySQL,Nodejs,Vue,nodejs,gitee,hexo">
+    
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Mr.WangLi","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"\n\nTranquilpeak\nInstallation\nHexo configuration\nTranquilpeak configuration\nIntegrated services configuration\nModifying the theme  \nWriting posts\nRunning\n\nInstallation\nDownload the latest version\nRename the folder in tranquilpeak and place it in the themes folder of your Hexo blog\nModify the theme in Hexo configuration file (_config.yml) by setting theme variable to tranquilpeak\nGo to the tranquilpeak folder and run npm install &amp;&amp; npm run prod\n\nHexo configurationEnable post assets folderIf you want to take advantage of cover image, thumbnail image, and image gallery features, you have to enable post assets folder by setting post_asset_folder to  true in Hexo configuration file (_config.yml).\nDisable relative linksYou have to set relative_link to false otherwise if you enter your blog url without the end /, like this http://yourdomain.com/blog, all assets will not be loaded.There is currently an issue on Hexo repository to fix this problem.\nEnable RSS feed\nExecute npm install hexo-generator-feed --save in your Hexo blog folder  \nAdd these lines in Hexo configuration file (_config.yml):  \n\n1234feed:    type: atom    path: atom.xml    limit: 20\n\n\n\n\nVariable\nDescription\n\n\n\ntype\nFeed type\n\n\npath\nFeed path (Default: atom.xml/rss2.xml)\n\n\nlimit\nMaximum number of posts in the feed (Use 0 or false to show all posts)\n\n\nIf you want more information on this plugin : hexo-generator-feed\nDefine global keywordsYou can define keywords for search engines. These keywords will be added on all pages.\n123keywords:- hexo- javascript\n\nTranquilpeak configurationLanguage configurationIf you are new to Hexo and internationalization (i18n), please read Hexo documentation - internationalization (i18n) section\nCurrently, the theme is delivered with:\n\nChinese (zh-CN)\nChinese Traditional (zh-TW)\nEnglish (en)\nFrench (fr-FR)\nJapanese (ja)\nPortuguese (pt-BR)\nRussian (ru)\nSpanish (es)\n\nIf your language is not available, follow this guidelines (E.g : add russian language (ru) :  \n\nSet language to ru in Hexo configuration file _config.yml  \nCreate ru.yml file in theme/tranquilpeak/languages/ folder  \nCopy the content of theme/tranquilpeak/languages/en.yml and paste it to ru.yml file  \nReplace all strings in english by their translation in russian  \nComplete your description and your job in russian and that’s it!  \n\nOtherwise, complete your description and your job in the right language file(s) in theme/tranquilpeak/languages.\nTranquilpeak theme is currently not ready to support multi-languages.\nTheme configurationComplete theme/tranquilpeak/_config.yml with your information by following guidelines.\nEnable search modalThe search modal of the theme works with Algolia API to search in your posts. To enable this features, follow these steps:\n\nCreate an account on Algolia\nInstall and configure hexo-algoliaseach plugin\nIndex your posts before deploying your blog. Here are the required fields:12345678fields:  - title  - tags  - date  - categories  - excerpt  - permalink  - thumbnailImageUrl\n\n\n\nEnable pagesTranquilpeak provides 3 pages to filter all posts by tags, categories and date. To enable one of these pages,read following steps.\nEnable all-categories pageTo enable all-categories page:\n\nRun hexo new page &quot;all-categories&quot;. A new folder named all-categories will be created in source/\nReplace source/all-categories/index.md content with:\n\n12345---title: \"all-categories\"layout: \"all-categories\"comments: false---\n\nThis page will be reachable at: /all-categories. On this page, users will be able to search and filter posts by categories.\nEnable all-tags pageTo enable all-tags page:\n\nRun hexo new page &quot;all-tags&quot;. A new folder named all-tags will be created in source/\nReplace source/all-tags/index.md content with:\n\n12345---title: \"all-tags\"layout: \"all-tags\"comments: false---\n\nThis page will be reachable at: /all-tags. On this page, users will be able to search and filter posts by tags.\nEnable all-archives pageTo enable all-archives page:\n\nRun hexo new page &quot;all-archives&quot;. A new folder named all-archives will be created in source/\nReplace source/all-archives/index.md content with:\n\n12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364---title: \"all-archives\"layout: \"all-archives\"comments: false---```  This page will be reachable at: `/all-archives`. On this page, users will be able to search and filter posts by date.  **Search pattern** : YYYY/MMM/DD## Integrated services configuration ##### Google Analytics#### Exclude hostname (localhost) while writing articlesWhile you are writing articles, you need to check the result a lot of times before deploying your site.If you have enable Google analytics service, Google will include all requests done, even when hostname is localhost and this can greatly skew the results.To overcome this, you have to add a filter on Google Analytics website.   Follow these steps, to add new filter :1. Sign in to your Google Analytics account2. Select the **Admin** tab and navigate to the **property** in which you want to create the filter **(Account &gt; Property &gt; View)**3. In **View** column, click on **Filters** button4. Click on **+ NEW FILTER** button6. Enter a name for the filter7. Select **Custom filter**, **Filter Field** : `Hostname`, **Filter Pattern** :  `(.*?localhost.*?)`8. Click on **Save** button## Modifying the theme1. Run `npm install` to install dependencies2. Run `hexo s` then `npm run start` and start coding :)### Save changes1. Run `npm run prod` to build the theme### Change global styleIf you want to change font families, font size, sidebar color, things like that, take a look at `source/_css/utils/_variables.scss` file. This file contains global variables used in this theme. ### Change code coloration (Highlight.js theme)Tranquilpeak integrates its own highlight.js theme inspired by GitHub. Of course, you can replace it with an other theme found on highlight.js repository. Since Hexo uses different CSS class names, all themeS are not ready out of the box, but it is very easy to make them compatible. Follow these steps :1. Get your theme here : [Highlight.js theme](https://github.com/isagalaev/highlight.js/tree/master/src/styles) or create yours2. Follow guidelines in `source/_css/themes/hljs-custom.scss` file### Customize 404 error pageWhen a user requests a page that the server cannot find, a standard *404* error page will be displayed. To create a custom 404 page that fits the theme first create a `404.md` file in your Hexo `source` folder.Hide post meta, actions and comments using front-matter settings:``` yamltitle: Page not foundmeta: falseactions: falsecomments: false\n\nNow you can customize your 404 error page just like any other blog post.Finally, you need to tell your server to use /404.html (which Hexo generates out of 404.md) as your default 404 error page. Here are tutorials for some common web servers/providers:\n\nApache\nNginx\nGitHub Pages\nAmazon Cloudfront/S3\n\nWriting postsTo write articles, you have to use Markdown language. Here you can find the main basics of Markdown syntax.Please note, there are many different versions of Markdown and some of them are not supported by Hexo.To use tags plugins to highlight code or add Fancybox image, please read Hexo docs\nI STRONGLY recommend you to use a CDN to speed up loading of pages. There is many free CDN like Cloudinary or you can also use indirectly by using services like Google Photos.\nFront-matter settingsTranquilpeak introduces new variables to give you a lot of possibilities.  \nSince Tranquilpeak 1.7, if you declare some photos in photos variable with a caption or an thumbnail url, please use gallery variable name instead of photos otherwise Hexo will generate wrong url for these images in open graph meta tag.\nExample :  \n12345678910111213141516171819202122disqusIdentifier: fdsF34ff34keywords:- javascript- hexoclearReading: truethumbnailImage: image-1.pngthumbnailImagePosition: bottomautoThumbnailImage: yesmetaAlignment: centercoverImage: image-2.pngcoverCaption: \"A beautiful sunrise\"coverMeta: outcoverSize: fullcoverImage: image-2.pnggallery:    - image-3.jpg \"New York\"    - image-4.png \"Paris\"    - http://i.imgur.com/o9r19kD.jpg \"Dubai\"    - https://example.com/orignal.jpg https://example.com/thumbnail.jpg \"Sidney\"comments: falsemeta: falseactions: false\n\n\n\n\nVariable\nDescription\n\n\n\ndisqusIdentifier\nDefine a unique string which is used to look up a page’s thread in the Disqus system.\n\n\nkeywords\nDefine keywords for search engines. you can also define global keywords in Hexo configuration file.\n\n\nclearReading\nHide sidebar on all article page to let article take full width to improve reading, and enjoy wide images and cover images. Useless if theme.sidebar_behavior is equal to 3 or 4. (true: enable, false: disable). Default behavior : theme.clear_reading value in theme configuration file.\n\n\nautoThumbnailImage\nAutomatically select the cover image or the first photo from the gallery of a post if there is no thumbnail image as the thumbnail image. autoThumbnailImage overwrite the setting auto_thumbnail_image in the theme configuration file\n\n\nthumbnailImage\nImage displayed in index view.\n\n\nthumbnailImagePosition\nDisplay thumbnail image at the right of title in index pages (right, left or bottom). thumbnailImagePosition overwrite the setting thumbnail_image_position in the theme configuration file\n\n\nmetaAlignment\nMeta (title, date and categories) alignment (right, left or center). Default behavior : left\n\n\ncoverImage\nImage displayed in full size at the top of your post in post view. If thumbnail image is not configured, cover image is also used as thumbnail image. Check the beautiful demo here : Cover image demo\n\n\ncoverSize\npartial: cover image take a part of the screen height (60%), full: cover image take the entire screen height.\n\n\ncoverCaption\nAdd a caption under the cover image : Cover caption demo\n\n\ncoverMeta\nin: display post meta (title, date and categories) on cover image, out: display meta (title, date and categories) under cover image as usual. Default behavior : in\n\n\ngallery\nFormerly photos. Images displayed in an image gallery (with fancybox) at the end of the post. If thumbnail image is not configured and cover image too, the first photo is used as thumbnail image. format: original url [thumbnail url] [caption], E.g : https://example.com/original.jpg https://example.com/thumbnail.jpg &quot;New York&quot;\n\n\ncomments\nDisable the comment of the post.\n\n\nmeta\nDisable post meta (date, categories).\n\n\nactions\nDisable post actions (navigation, share links).\n\n\nExample:A post on index page will look like this with :thumbnailImagePosition set to bottom:  \nThe same with : thumbnailImagePosition set to right:  \nThe same with : thumbnailImagePosition set to left:  \nThe relative path of images entered is : source/_posts/{YOUR_POST_TITLE}/, you just have to enter the name of the image without domain name and path like written just above.Of course, you can set external url.\nDefine post excerpt\n&lt;!-- more --&gt; to define post excerpt and keep the post excerpt in the post content\n&lt;!-- excerpt --&gt; to define post excerpt and remove the post excerpt of the post content\n\nDisplay all post contentTo display all post content on index page, don’t put &lt;!-- more --&gt; and &lt;!-- excerpt --&gt; comment in your post content.\nDisplay table of contentsYou can display table of contents of a post with  &lt;!-- toc --&gt;.  Place this comment where you want to display it. You can also edit the title displayed at the top of the table of contents in the _config.yml file.\n \nTagsTranquilpeak introduces new tags to display alert messages, images in full width and create beautiful galleries.DON’T use anymore fancybox tag. Please use image tag with fancybox class to generate them. More information here : Image tag \nAlert\nAlert tag is useful to highlight a content like a tips or a warning. Check it live here : Alert tag demo\nSyntax :  \n123&#123;% alert [classes] %&#125;content&#123;% endalert %&#125;\n\nE.g : \n123&#123;% alert danger no-icon %&#125;Here is a danger alert without icon&#123;% endalert %&#125;\n\n\n\n\nArgument\nDescription\n\n\n\nClasses\ninfosuccesswarningdangerno-icon\n\n\nHighlight Text\nHighlight text tag is useful to highlight an interesting part in a text. Check it live here : Highlight text tag demo\nSyntax :  \n123456&#123;% hl_text [(classes | hexa code | rgb color | rgba color)] %&#125; content&#123;% endhl_text %&#125;``` E.g :\nyour highlighted text\n12345678910111213|Argument|Description||---|---| |Classes|&lt;strong&gt;classes&lt;/strong&gt; : &lt;ul&gt;&lt;li&gt;red&lt;/li&gt;&lt;li&gt;green&lt;/li&gt;&lt;li&gt;blue&lt;/li&gt;&lt;li&gt;purple&lt;/li&gt;&lt;li&gt;orange&lt;/li&gt;&lt;li&gt;yellow&lt;/li&gt;&lt;li&gt;cyan&lt;/li&gt;&lt;li&gt;primary&lt;/li&gt;&lt;li&gt;success&lt;/li&gt;&lt;li&gt;warning&lt;/li&gt;&lt;li&gt;danger&lt;/li&gt;&lt;/ul&gt;|        **You can also use hexa color, rgb color, rgba color.****It&apos;s important to put the paragraph that contains highlight text tag inside** `&lt;p&gt;...&lt;/p&gt;` **otherwise the following content may not be rendered.**E.g (hexa color) :  ``` &lt;p&gt;Sed imperdiet urna et quam ultrices &#123;% hl_text #00FFFF %&#125;your highlighted text&#123;% endhl_text %&#125; dignissim ultrices libero.&lt;/p&gt;\n\nE.g (rgba color) :  \n1&lt;p&gt;Sed imperdiet urna et quam ultrices &#123;% hl_text rgba(12, 12, 12, 0.4) %&#125;your highlighted text&#123;% endhl_text %&#125; dignissim ultrices libero.&lt;/p&gt;\n\nImageImage tag is useful to add images and create beautiful galleries. Check out some possibilities here : Image tag demo\n12Syntax : `&#123;% image [classes] group:group-name /path/to/image [/path/to/thumbnail] [width of thumbnail] [height of thumbnail] [title text] %&#125;`  E.g : `&#123;% image fancybox right clear group:travel image2.png http://google.fr/images/image125.png 150px 300px &quot;A beautiful sunrise&quot; %&#125;`\n\n\n\n\nArgument\nDescription\n\n\n\nClasses (optional)\nYou can add css classes to stylize the image. Separate class with whitespace. Tranquilpeak integrate many css class to create nice effects: fancybox : Generate a fancybox image.nocaption : Caption of the image will not be displayed.left : Image will float at the left.right : Image will float at the right.center : Image will be at center.fig-20 : Image will take 20% of the width of post width and automatically float at left.fig-25 : Image will take 25% of the width of post width and automatically float at left.fig-33 : Image will take 33% of the width of post width and automatically float at left.fig-50 : Image will take 50% of the width of post width and automatically float at left.fig-75 : Image will take 75% of the width of post width and automatically float at left.fig-100 : Image will take 100% of the width of post width.clear : Add a div with clear:both; style attached after the image to retrieve the normal flow of the post.\n\n\nGroup (optional)\nName of a group, used to create a gallery. Only for image with fancybox css class\n\n\nOrignal image\nPath to the original image.\n\n\nThumbnail image (optional)\nPath to the thumbnail image. If empty, the orignal image will be displayed.\n\n\nWidth of thumbnail image (optional)\nWidth to the thumbnail image. If the thumbnail image is empty, width will be attached to thumbnail image created from original image. E.g : 150px or 85%.\n\n\nHeight of thumbnail image (optional)\nHeight to the thumbnail image. If the thumbnail image is empty, height will be attached to thumbnail image created from original image. E.g : 300px or 20%.\n\n\nTitle (optional)\nTitle of image displayed in a caption under image. Alt HTML attribute will use this title. E.g : &quot;A beautiful sunrise&quot;.\n\n\nVideoThe video tag provides a convenient way to showcase self-hosted videos. Take a look at some examples here: Video Tag Demo\n12Syntax : `&#123;% video [classes] videoURL [Optional Poster (Thumbnail) URL] [Width] [Caption] %&#125;`E.g : `&#123;% video center https://example.com/video.mp4 https://example.com/video-poster.jpg 100% Poster (Thumbnail) Enabled %&#125;`\n\n\n\n\nArgument\nDescription\n\n\n\nClasses (optional)\nMake sure to separate your class properties with whitespaces. Tranquilpeak integrates many css classes to create nice effects: left : Video will float at the left (default alignment).right : Video will float at the right.center : Video will be at center.clear : Add a div with clear:both; style attached after the image to retrieve the normal flow of the post.nocaption : the provided caption will not be displayed.loop : once over, the video will playback from the beginning.nocontrols : The video’s default controls will be hidden. Most browsers still make them accessible by right clicking on the video.autoplay : Video will autoplay on page load. must be used with the ‘mute’ class to obey browser standards. Most likely will not work otherwise.muted : The video will be mutedfig-20 : Image will take 20% of the width of post width and automatically float at left.fig-25 : Image will take 25% of the width of post width and automatically float at left.fig-33 : Image will take 33% of the width of post width and automatically float at left.fig-50 : Image will take 50% of the width of post width and automatically float at left.fig-75 : Image will take 75% of the width of post width and automatically float at left.fig-100 : Image will take 100% of the width of post width.\n\n\nvideoURL\nPath to the original video.\n\n\nPoster image (optional thumbnail)\nPath to the thumbnail image. If empty, the initial frame of video will be displayed.\n\n\nWidth of thumbnail image (optional)\nWidth of the video frame. E.g : 85%.\n\n\nCaption (optional)\nTitle of image displayed in a caption under image. Alt HTML attribute will use this title. E.g : &quot;A beautiful sunrise&quot;.\n\n\nTabbed code blockTabbed code blocks are useful to group multiple code blocks related. For example, the source code of a web component (html, css and js). Or compare a source code in different languages.\n\nCheck it live : tabbed code block demo\nSyntax :\n12345&#123;% tabbed_codeblock [name] [link] %&#125;    &lt;!-- tab [lang] --&gt;        source code    &lt;!-- endtab --&gt;&#123;% endtabbed_codeblock %&#125;\n\nE.g :\n12345678910&#123;% tabbed_codeblock example http://example.com %&#125;    &lt;!-- tab js --&gt;        var test = 'test';    &lt;!-- endtab --&gt;    &lt;!-- tab css --&gt;        .btn &#123;            color: red;        &#125;    &lt;!-- endtab --&gt;&#123;% endtabbed_codeblock %&#125;\n\n\n\n\n\nArgument\nDescription\n\n\n\nName (optional)\nName of the code block, or of the file\n\n\nLink (optional)\nLink to a demo, or a file\n\n\nLang (optional)\nProgramming language use for the current tab\n\n\nWide imageWide image tag is useful to display wide images in full width. It takes entire window width. Check the result : Wide image tag demo\n12Syntax : `&#123;% wide_image /path/to/image [title text] %&#125;`  E.g : `&#123;% wide_image http://google.fr/images/image125.png &quot;A beautiful sunrise&quot; %&#125;`\n\n\n\n\n\nArgument\nDescription\n\n\n\nImage\nPath to the original image.\n\n\nTitle (optional)\nTitle of image displayed in a caption under image. Alt HTML attribute will use this title. E.g : &quot;A beautiful sunrise&quot;.\n\n\nFancyboxfancybox tag is deprecated since Tranquilpeak 1.3. Please use image tag with fancybox class to generate them. More information here : Image tag \nRunningRun hexo server and start writing! :)","dateCreated":"2019-11-26T16:41:44+08:00","dateModified":"2019-11-26T20:05:20+08:00","datePublished":"2019-11-26T16:41:44+08:00","description":"国外大神的一个Hexo主题风格，github地址，目前支持的东西较少，但是整体风格甚是喜欢呐！","headline":"个性主题配置","image":["http://q1kfgxn5f.bkt.clouddn.com/city.jpg","http://q1kfgxn5f.bkt.clouddn.com/bg-city.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"/2019/11/26/hexo-theme-tranquilpeak/"},"publisher":{"@type":"Organization","name":"Mr.WangLi","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"/2019/11/26/hexo-theme-tranquilpeak/","keywords":"Hexo","thumbnailUrl":"http://q1kfgxn5f.bkt.clouddn.com/city.jpg"}</script>
+    <meta name="description" content="国外大神的一个Hexo主题风格，github地址，目前支持的东西较少，但是整体风格甚是喜欢呐！">
+<meta name="keywords" content="nodejs,gitee,hexo">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="个性主题配置">
+<meta property="og:url" content="&#x2F;2019&#x2F;11&#x2F;26&#x2F;hexo-theme-tranquilpeak&#x2F;index.html">
+<meta property="og:site_name" content="BiWin&#39;s Blog">
+<meta property="og:description" content="国外大神的一个Hexo主题风格，github地址，目前支持的东西较少，但是整体风格甚是喜欢呐！">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:image" content="http:&#x2F;&#x2F;q1kfgxn5f.bkt.clouddn.com&#x2F;demo-botton.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;q1kfgxn5f.bkt.clouddn.com&#x2F;demo-right.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;q1kfgxn5f.bkt.clouddn.com&#x2F;demo-left.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;q1kfgxn5f.bkt.clouddn.com&#x2F;toc-400.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;q1kfgxn5f.bkt.clouddn.com&#x2F;alert-tag.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;q1kfgxn5f.bkt.clouddn.com&#x2F;highlight_text-tag.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;q1kfgxn5f.bkt.clouddn.com&#x2F;tabbed_codeblock-tag.png">
+<meta property="og:updated_time" content="2019-11-26T12:05:20.324Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;q1kfgxn5f.bkt.clouddn.com&#x2F;demo-botton.png">
+    
+    
+        
+    
+    
+    
+        <meta property="og:image" content="http://q1kfgxn5f.bkt.clouddn.com/city.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://q1kfgxn5f.bkt.clouddn.com/city.jpg"/>
+    
+    
+        <meta property="og:image" content="http://q1kfgxn5f.bkt.clouddn.com/bg-city.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://q1kfgxn5f.bkt.clouddn.com/bg-city.jpg"/>
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style-oev5cuyzuvtcr23pwkfrcpe0x1kprrxocqp2hwrvniimsrlspfj0vyq96re7.min.css">
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/%20"
+            aria-label=""
+        >
+            BiWin&#39;s Blog
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="打开链接: /#about"
+            >
+        
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/%20"
+                            
+                            title="首页"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">首页</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-categories"
+                            
+                            title="分类"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">分类</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-tags"
+                            
+                            title="标签"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">标签</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-archives"
+                            
+                            title="归档"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">归档</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link open-algolia-search"
+                             href="#search"
+                            
+                            title="搜索"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">搜索</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="#about"
+                            
+                            title="关于"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">关于</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="https://github.com/"
+                            title="GitHub"
+                        >
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="http://stackoverflow.com/users"
+                            title="Stack Overflow"
+                        >
+                    
+                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Stack Overflow</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="https://twitter.com/"
+                            title="Twitter"
+                        >
+                    
+                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Twitter</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="https://facebook.com/"
+                            title="Facebook"
+                        >
+                    
+                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Facebook</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="https://plus.google.com/"
+                            title="Google Plus"
+                        >
+                    
+                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Google Plus</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="https://www.linkedin.com/profile/"
+                            title="LinkedIn"
+                        >
+                    
+                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">LinkedIn</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/mailto"
+                            title="邮箱"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">邮箱</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/atom.xml"
+                            
+                            title="RSS"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+        <div class="post-header-cover
+                    text-center
+                    post-header-cover--full"
+             style="background-image:url('http://q1kfgxn5f.bkt.clouddn.com/bg-city.jpg');"
+             data-behavior="4">
+            
+        </div>
+
+            <div id="main" data-behavior="4"
+                 class="hasCover
+                        hasCoverMetaOut
+                        hasCoverCaption">
+                
+<article class="post">
+    
+        <span class="post-header-cover-caption caption">A beautiful Bridge</span>
+    
+    
+        <div class="post-header main-content-wrap text-center">
+    
+        <h1 class="post-title">
+            个性主题配置
+        </h1>
+    
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- excerpt -->
+
+<h1 id="Tranquilpeak"><a href="#Tranquilpeak" class="headerlink" title="Tranquilpeak"></a>Tranquilpeak</h1><ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#hexo-configuration">Hexo configuration</a></li>
+<li><a href="#tranquilpeak-configuration">Tranquilpeak configuration</a></li>
+<li><a href="#integrated-services-configuration">Integrated services configuration</a></li>
+<li><a href="#modifying-the-theme">Modifying the theme</a>  </li>
+<li><a href="#writing-posts">Writing posts</a></li>
+<li><a href="#running">Running</a></li>
+</ul>
+<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><ol>
+<li>Download the latest <a href="https://github.com/LouisBarranqueiro/hexo-theme-tranquilpeak/archive/master.zip">version</a></li>
+<li>Rename the folder in <code>tranquilpeak</code> and place it in the <code>themes</code> folder of your Hexo blog</li>
+<li>Modify the theme in Hexo configuration file (<code>_config.yml</code>) by setting <code>theme</code> variable to <code>tranquilpeak</code></li>
+<li>Go to the <code>tranquilpeak</code> folder and run <code>npm install &amp;&amp; npm run prod</code></li>
+</ol>
+<h2 id="Hexo-configuration"><a href="#Hexo-configuration" class="headerlink" title="Hexo configuration"></a>Hexo configuration</h2><h3 id="Enable-post-assets-folder"><a href="#Enable-post-assets-folder" class="headerlink" title="Enable post assets folder"></a>Enable post assets folder</h3><p>If you want to take advantage of cover image, thumbnail image, and image gallery features, you have to enable post assets folder by setting <code>post_asset_folder</code> to  <code>true</code> in Hexo configuration file (<code>_config.yml</code>).</p>
+<h3 id="Disable-relative-links"><a href="#Disable-relative-links" class="headerlink" title="Disable relative links"></a>Disable relative links</h3><p>You have to set <code>relative_link</code> to <code>false</code> otherwise if you enter your blog url without the end <code>/</code>, like this <code>http://yourdomain.com/blog</code>, all assets will not be loaded.<br>There is currently an issue on Hexo repository to fix this problem.</p>
+<h3 id="Enable-RSS-feed"><a href="#Enable-RSS-feed" class="headerlink" title="Enable RSS feed"></a>Enable RSS feed</h3><ol>
+<li>Execute <code>npm install hexo-generator-feed --save</code> in your Hexo blog folder  </li>
+<li>Add these lines in Hexo configuration file (<code>_config.yml</code>):  </li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">feed:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">atom</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">atom.xml</span></span><br><span class="line">    <span class="attr">limit:</span> <span class="number">20</span></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>type</td>
+<td>Feed type</td>
+</tr>
+<tr>
+<td>path</td>
+<td>Feed path (Default: atom.xml/rss2.xml)</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>Maximum number of posts in the feed (Use <code>0</code> or <code>false</code> to show all posts)</td>
+</tr>
+</tbody></table>
+<p>If you want more information on this plugin : <a href="https://github.com/hexojs/hexo-generator-feed">hexo-generator-feed</a></p>
+<h3 id="Define-global-keywords"><a href="#Define-global-keywords" class="headerlink" title="Define global keywords"></a>Define global keywords</h3><p>You can define keywords for search engines. These keywords will be added on all pages.</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">keywords:</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">hexo</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">javascript</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Tranquilpeak-configuration"><a href="#Tranquilpeak-configuration" class="headerlink" title="Tranquilpeak configuration"></a>Tranquilpeak configuration</h2><h3 id="Language-configuration"><a href="#Language-configuration" class="headerlink" title="Language configuration"></a>Language configuration</h3><p>If you are new to Hexo and internationalization (i18n), please read <a href="https://hexo.io/docs/internationalization.html">Hexo documentation - internationalization (i18n) section</a></p>
+<p>Currently, the theme is delivered with:</p>
+<ul>
+<li>Chinese (zh-CN)</li>
+<li>Chinese Traditional (zh-TW)</li>
+<li>English (en)</li>
+<li>French (fr-FR)</li>
+<li>Japanese (ja)</li>
+<li>Portuguese (pt-BR)</li>
+<li>Russian (ru)</li>
+<li>Spanish (es)</li>
+</ul>
+<p>If your language is not available, follow this guidelines (E.g : add russian language (ru) :  </p>
+<ol>
+<li>Set <code>language</code> to <code>ru</code> in Hexo configuration file <code>_config.yml</code>  </li>
+<li>Create <code>ru.yml</code> file in <code>theme/tranquilpeak/languages/</code> folder  </li>
+<li>Copy the content of <code>theme/tranquilpeak/languages/en.yml</code> and paste it to <code>ru.yml</code> file  </li>
+<li>Replace all strings in english by their translation in russian  </li>
+<li>Complete your description and your job in russian and that’s it!  </li>
+</ol>
+<p>Otherwise, complete your description and your job in the right language file(s) in <code>theme/tranquilpeak/languages</code>.</p>
+<p><strong>Tranquilpeak theme is currently not ready to support multi-languages.</strong></p>
+<h3 id="Theme-configuration"><a href="#Theme-configuration" class="headerlink" title="Theme configuration"></a>Theme configuration</h3><p>Complete <code>theme/tranquilpeak/_config.yml</code> with your information by following guidelines.</p>
+<h3 id="Enable-search-modal"><a href="#Enable-search-modal" class="headerlink" title="Enable search modal"></a>Enable search modal</h3><p>The search modal of the theme works with Algolia API to search in your posts. To enable this features, follow these steps:</p>
+<ol>
+<li>Create an account on Algolia</li>
+<li>Install and configure <a href="https://github.com/LouisBarranqueiro/hexo-algoliasearch">hexo-algoliaseach</a> plugin</li>
+<li>Index your posts before deploying your blog. Here are the required fields:<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">fields:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">title</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">tags</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">date</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">categories</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">excerpt</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">permalink</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">thumbnailImageUrl</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="Enable-pages"><a href="#Enable-pages" class="headerlink" title="Enable pages"></a>Enable pages</h3><p>Tranquilpeak provides 3 pages to filter all posts by tags, categories and date. To enable one of these pages,<br>read following steps.</p>
+<h4 id="Enable-all-categories-page"><a href="#Enable-all-categories-page" class="headerlink" title="Enable all-categories page"></a>Enable all-categories page</h4><p>To enable <code>all-categories</code> page:</p>
+<ol>
+<li>Run <code>hexo new page &quot;all-categories&quot;</code>. A new folder named <code>all-categories</code> will be created in <code>source/</code></li>
+<li>Replace <code>source/all-categories/index.md</code> content with:</li>
+</ol>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: "all-categories"</span><br><span class="line">layout: "all-categories"</span><br><span class="line">comments: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p>This page will be reachable at: <code>/all-categories</code>. On this page, users will be able to search and filter posts by categories.</p>
+<h4 id="Enable-all-tags-page"><a href="#Enable-all-tags-page" class="headerlink" title="Enable all-tags page"></a>Enable all-tags page</h4><p>To enable <code>all-tags</code> page:</p>
+<ol>
+<li>Run <code>hexo new page &quot;all-tags&quot;</code>. A new folder named <code>all-tags</code> will be created in <code>source/</code></li>
+<li>Replace <code>source/all-tags/index.md</code> content with:</li>
+</ol>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: "all-tags"</span><br><span class="line">layout: "all-tags"</span><br><span class="line">comments: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p>This page will be reachable at: <code>/all-tags</code>. On this page, users will be able to search and filter posts by tags.</p>
+<h4 id="Enable-all-archives-page"><a href="#Enable-all-archives-page" class="headerlink" title="Enable all-archives page"></a>Enable all-archives page</h4><p>To enable <code>all-archives</code> page:</p>
+<ol>
+<li>Run <code>hexo new page &quot;all-archives&quot;</code>. A new folder named <code>all-archives</code> will be created in <code>source/</code></li>
+<li>Replace <code>source/all-archives/index.md</code> content with:</li>
+</ol>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: "all-archives"</span><br><span class="line">layout: "all-archives"</span><br><span class="line">comments: false</span><br><span class="line">---</span><br><span class="line"><span class="code">```  </span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">This page will be reachable at: `/all-archives`. On this page, users will be able to search and filter posts by date.  </span></span><br><span class="line"><span class="code">**Search pattern** : YYYY/MMM/DD</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">## Integrated services configuration ##</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">### Google Analytics</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">#### Exclude hostname (localhost) while writing articles</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">While you are writing articles, you need to check the result a lot of times before deploying your site.</span></span><br><span class="line"><span class="code">If you have enable Google analytics service, Google will include all requests done, even when hostname is localhost and this can greatly skew the results.</span></span><br><span class="line"><span class="code">To overcome this, you have to add a filter on Google Analytics website.</span></span><br><span class="line"><span class="code">   </span></span><br><span class="line"><span class="code">Follow these steps, to add new filter :</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">1. Sign in to your Google Analytics account</span></span><br><span class="line"><span class="code">2. Select the **Admin** tab and navigate to the **property** in which you want to create the filter **(Account &gt; Property &gt; View)**</span></span><br><span class="line"><span class="code">3. In **View** column, click on **Filters** button</span></span><br><span class="line"><span class="code">4. Click on **+ NEW FILTER** button</span></span><br><span class="line"><span class="code">6. Enter a name for the filter</span></span><br><span class="line"><span class="code">7. Select **Custom filter**, **Filter Field** : `Hostname`, **Filter Pattern** :  `(.*?localhost.*?)`</span></span><br><span class="line"><span class="code">8. Click on **Save** button</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">## Modifying the theme</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">1. Run `npm install` to install dependencies</span></span><br><span class="line"><span class="code">2. Run `hexo s` then `npm run start` and start coding :)</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">### Save changes</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">1. Run `npm run prod` to build the theme</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">### Change global style</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">If you want to change font families, font size, sidebar color, things like that, take a look at `source/_css/utils/_variables.scss` file. This file contains global variables used in this theme. </span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">### Change code coloration (Highlight.js theme)</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">Tranquilpeak integrates its own highlight.js theme inspired by GitHub. </span></span><br><span class="line"><span class="code">Of course, you can replace it with an other theme found on highlight.js repository. Since Hexo uses different CSS class names, all themeS are not ready out of the box, but it is very easy to make them compatible. </span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">Follow these steps :</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">1. Get your theme here : [Highlight.js theme](https://github.com/isagalaev/highlight.js/tree/master/src/styles) or create yours</span></span><br><span class="line"><span class="code">2. Follow guidelines in `source/_css/themes/hljs-custom.scss` file</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">### Customize 404 error page</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">When a user requests a page that the server cannot find, a standard *404* error page will be displayed. To create a custom 404 page that fits the theme first create a `404.md` file in your Hexo `source` folder.</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">Hide post meta, actions and comments using front-matter settings:</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">``` yaml</span></span><br><span class="line"><span class="code">title: Page not found</span></span><br><span class="line"><span class="code">meta: false</span></span><br><span class="line"><span class="code">actions: false</span></span><br><span class="line"><span class="code">comments: false</span></span><br></pre></td></tr></table></figure>
+
+<p>Now you can customize your 404 error page just like any other blog post.<br>Finally, you need to tell your server to use <code>/404.html</code> (which Hexo generates out of <code>404.md</code>) as your default 404 error page. Here are tutorials for some common web servers/providers:</p>
+<ul>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-create-a-custom-404-page-in-apache">Apache</a></li>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-configure-nginx-to-use-custom-error-pages-on-ubuntu-14-04">Nginx</a></li>
+<li><a href="https://help.github.com/articles/creating-a-custom-404-page-for-your-github-pages-site/">GitHub Pages</a></li>
+<li><a href="http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/custom-error-pages.html">Amazon Cloudfront/S3</a></li>
+</ul>
+<h2 id="Writing-posts"><a href="#Writing-posts" class="headerlink" title="Writing posts"></a>Writing posts</h2><p>To write articles, you have to use Markdown language. <a href="https://guides.github.com/features/mastering-markdown/#examples">Here</a> you can find the main basics of Markdown syntax.<br>Please note, there are many different versions of Markdown and some of them are not supported by Hexo.<br>To use tags plugins to highlight code or add Fancybox image, please read <a href="https://hexo.io/docs/tag-plugins.html">Hexo docs</a></p>
+<p><strong>I STRONGLY recommend you to use a CDN to speed up loading of pages. There is many free CDN like Cloudinary or you can also use indirectly by using services like Google Photos.</strong></p>
+<h3 id="Front-matter-settings"><a href="#Front-matter-settings" class="headerlink" title="Front-matter settings"></a>Front-matter settings</h3><p>Tranquilpeak introduces new variables to give you a lot of possibilities.  </p>
+<p><strong>Since Tranquilpeak 1.7, if you declare some photos in <code>photos</code> variable with a caption or an thumbnail url, please use <code>gallery</code> variable name instead of <code>photos</code> otherwise Hexo will generate wrong url for these images in open graph meta tag.</strong></p>
+<p>Example :  </p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">disqusIdentifier: fdsF34ff34</span><br><span class="line">keywords:</span><br><span class="line"><span class="bullet">- </span>javascript</span><br><span class="line"><span class="bullet">- </span>hexo</span><br><span class="line">clearReading: true</span><br><span class="line">thumbnailImage: image-1.png</span><br><span class="line">thumbnailImagePosition: bottom</span><br><span class="line">autoThumbnailImage: yes</span><br><span class="line">metaAlignment: center</span><br><span class="line">coverImage: image-2.png</span><br><span class="line">coverCaption: "A beautiful sunrise"</span><br><span class="line">coverMeta: out</span><br><span class="line">coverSize: full</span><br><span class="line">coverImage: image-2.png</span><br><span class="line">gallery:</span><br><span class="line"><span class="bullet">    - </span>image-3.jpg "New York"</span><br><span class="line"><span class="bullet">    - </span>image-4.png "Paris"</span><br><span class="line"><span class="bullet">    - </span>http://i.imgur.com/o9r19kD.jpg "Dubai"</span><br><span class="line"><span class="bullet">    - </span>https://example.com/orignal.jpg https://example.com/thumbnail.jpg "Sidney"</span><br><span class="line">comments: false</span><br><span class="line">meta: false</span><br><span class="line">actions: false</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>disqusIdentifier</td>
+<td>Define a unique string which is used to look up a page’s thread in the Disqus system.</td>
+</tr>
+<tr>
+<td>keywords</td>
+<td>Define keywords for search engines. you can also define global keywords in Hexo configuration file.</td>
+</tr>
+<tr>
+<td>clearReading</td>
+<td>Hide sidebar on all article page to let article take full width to improve reading, and enjoy wide images and cover images. Useless if <code>theme.sidebar_behavior</code> is equal to <code>3</code> or <code>4</code>. (true: enable, false: disable). Default behavior : <code>theme.clear_reading</code> value in theme configuration file.</td>
+</tr>
+<tr>
+<td>autoThumbnailImage</td>
+<td>Automatically select the cover image or the first photo from the gallery of a post if there is no thumbnail image as the thumbnail image. <code>autoThumbnailImage</code> overwrite the setting <code>auto_thumbnail_image</code> in the theme configuration file</td>
+</tr>
+<tr>
+<td>thumbnailImage</td>
+<td>Image displayed in index view.</td>
+</tr>
+<tr>
+<td>thumbnailImagePosition</td>
+<td>Display thumbnail image at the right of title in index pages (<code>right</code>, <code>left</code> or <code>bottom</code>). <code>thumbnailImagePosition</code> overwrite the setting <code>thumbnail_image_position</code> in the theme configuration file</td>
+</tr>
+<tr>
+<td>metaAlignment</td>
+<td>Meta (title, date and categories) alignment (right, left or center). Default behavior : left</td>
+</tr>
+<tr>
+<td>coverImage</td>
+<td>Image displayed in full size at the top of your post in post view. If thumbnail image is not configured, cover image is also used as thumbnail image. Check the beautiful demo here : <a href="https://louisbarranqueiro.github.io/hexo-theme-tranquilpeak/2015/05/13/Cover-image-showcase/">Cover image demo</a></td>
+</tr>
+<tr>
+<td>coverSize</td>
+<td><code>partial</code>: cover image take a part of the screen height (60%), <code>full</code>: cover image take the entire screen height.</td>
+</tr>
+<tr>
+<td>coverCaption</td>
+<td>Add a caption under the cover image : <a href="https://louisbarranqueiro.github.io/hexo-theme-tranquilpeak/2015/05/13/Cover-image-showcase/">Cover caption demo</a></td>
+</tr>
+<tr>
+<td>coverMeta</td>
+<td><code>in</code>: display post meta (title, date and categories) on cover image, <code>out</code>: display meta (title, date and categories) under cover image as usual. Default behavior : <code>in</code></td>
+</tr>
+<tr>
+<td>gallery</td>
+<td>Formerly <strong>photos</strong>. Images displayed in an image gallery (with fancybox) at the end of the post. If thumbnail image is not configured and cover image too, the first photo is used as thumbnail image. format: <code>original url [thumbnail url] [caption]</code>, E.g : <code>https://example.com/original.jpg https://example.com/thumbnail.jpg &quot;New York&quot;</code></td>
+</tr>
+<tr>
+<td>comments</td>
+<td>Disable the comment of the post.</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>Disable post meta (date, categories).</td>
+</tr>
+<tr>
+<td>actions</td>
+<td>Disable post actions (navigation, share links).</td>
+</tr>
+</tbody></table>
+<p>Example:<br>A post on index page will look like this with :<code>thumbnailImagePosition</code> set to <code>bottom</code>:<br><img src="http://q1kfgxn5f.bkt.clouddn.com/demo-botton.png" alt="thumbnail-image-position-bottom">  </p>
+<p>The same with : <code>thumbnailImagePosition</code> set to <code>right</code>:<br><img src="http://q1kfgxn5f.bkt.clouddn.com/demo-right.png" alt="thumbnail-image-position-right">  </p>
+<p>The same with : <code>thumbnailImagePosition</code> set to <code>left</code>:<br><img src="http://q1kfgxn5f.bkt.clouddn.com/demo-left.png" alt="thumbnail-image-position-left">  </p>
+<p><strong>The relative path of images entered is : <code>source/_posts/{YOUR_POST_TITLE}/</code>, you just have to enter the name of the image without domain name and path like written just above.<br>Of course, you can set external url.</strong></p>
+<h3 id="Define-post-excerpt"><a href="#Define-post-excerpt" class="headerlink" title="Define post excerpt"></a>Define post excerpt</h3><ul>
+<li><code>&lt;!-- more --&gt;</code> to define post excerpt and keep the post excerpt in the post content</li>
+<li><code>&lt;!-- excerpt --&gt;</code> to define post excerpt and remove the post excerpt of the post content</li>
+</ul>
+<h3 id="Display-all-post-content"><a href="#Display-all-post-content" class="headerlink" title="Display all post content"></a>Display all post content</h3><p><strong>To display all post content on index page, don’t put <code>&lt;!-- more --&gt;</code> and <code>&lt;!-- excerpt --&gt;</code> comment in your post content.</strong></p>
+<h3 id="Display-table-of-contents"><a href="#Display-table-of-contents" class="headerlink" title="Display table of contents"></a>Display table of contents</h3><p>You can display table of contents of a post with  <code>&lt;!-- toc --&gt;</code>.  Place this comment where you want to display it. You can also edit the title displayed at the top of the table of contents in the <code>_config.yml</code> file.</p>
+<p><img src="http://q1kfgxn5f.bkt.clouddn.com/toc-400.png" alt="thumbnail-image-position-left"> </p>
+<h3 id="Tags"><a href="#Tags" class="headerlink" title="Tags"></a>Tags</h3><p>Tranquilpeak introduces new tags to display alert messages, images in full width and create beautiful galleries.<br><strong>DON’T use anymore fancybox tag</strong>. Please use <code>image</code> tag with <code>fancybox</code> class to generate them. More information here : <a href="#image">Image tag</a> </p>
+<h4 id="Alert"><a href="#Alert" class="headerlink" title="Alert"></a>Alert</h4><p><img src="http://q1kfgxn5f.bkt.clouddn.com/alert-tag.png" alt="alert-tag"></p>
+<p>Alert tag is useful to highlight a content like a tips or a warning. Check it live here : <a href="https://louisbarranqueiro.github.io/hexo-theme-tranquilpeak/2014/10/29/Tags-plugins-showcase/#Alerts">Alert tag demo</a></p>
+<p>Syntax :  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% alert [classes] %&#125;</span><br><span class="line">content</span><br><span class="line">&#123;% endalert %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>E.g : </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% alert danger no-icon %&#125;</span><br><span class="line">Here is a danger alert without icon</span><br><span class="line">&#123;% endalert %&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Classes</td>
+<td><ul><li>info</li><li>success</li><li>warning</li><li>danger</li><li>no-icon</li></ul></td>
+</tr>
+</tbody></table>
+<h4 id="Highlight-Text"><a href="#Highlight-Text" class="headerlink" title="Highlight Text"></a>Highlight Text</h4><p><img src="http://q1kfgxn5f.bkt.clouddn.com/highlight_text-tag.png" alt="highlight_text-tag"></p>
+<p>Highlight text tag is useful to highlight an interesting part in a text. Check it live here : <a href="https://louisbarranqueiro.github.io/hexo-theme-tranquilpeak/2014/10/29/Tags-plugins-showcase/#Highlight-text">Highlight text tag demo</a></p>
+<p>Syntax :  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;% hl_text [(classes | hexa code | rgb color | rgba color)] %&#125; </span><br><span class="line">content</span><br><span class="line">&#123;% endhl_text %&#125;</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">E.g :</span><br></pre></td></tr></table></figure>
+<span class="highlight-text danger">your highlighted text</span>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">|Argument|Description|</span><br><span class="line">|---|---| </span><br><span class="line">|Classes|&lt;strong&gt;classes&lt;/strong&gt; : &lt;ul&gt;&lt;li&gt;red&lt;/li&gt;&lt;li&gt;green&lt;/li&gt;&lt;li&gt;blue&lt;/li&gt;&lt;li&gt;purple&lt;/li&gt;&lt;li&gt;orange&lt;/li&gt;&lt;li&gt;yellow&lt;/li&gt;&lt;li&gt;cyan&lt;/li&gt;&lt;li&gt;primary&lt;/li&gt;&lt;li&gt;success&lt;/li&gt;&lt;li&gt;warning&lt;/li&gt;&lt;li&gt;danger&lt;/li&gt;&lt;/ul&gt;|</span><br><span class="line">        </span><br><span class="line">**You can also use hexa color, rgb color, rgba color.**</span><br><span class="line"></span><br><span class="line">**It&apos;s important to put the paragraph that contains highlight text tag inside** `&lt;p&gt;...&lt;/p&gt;` </span><br><span class="line">**otherwise the following content may not be rendered.**</span><br><span class="line"></span><br><span class="line">E.g (hexa color) :  </span><br><span class="line">``` </span><br><span class="line">&lt;p&gt;Sed imperdiet urna et quam ultrices &#123;% hl_text #00FFFF %&#125;your highlighted text&#123;% endhl_text %&#125; dignissim ultrices libero.&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+
+<p>E.g (rgba color) :  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;Sed imperdiet urna et quam ultrices &#123;% hl_text rgba(12, 12, 12, 0.4) %&#125;your highlighted text&#123;% endhl_text %&#125; dignissim ultrices libero.&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Image"><a href="#Image" class="headerlink" title="Image"></a>Image</h4><p>Image tag is useful to add images and create beautiful galleries. Check out some possibilities here : <a href="https://louisbarranqueiro.github.io/hexo-theme-tranquilpeak/2014/10/29/Tags-plugins-showcase/#Images">Image tag demo</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Syntax : `&#123;% image [classes] group:group-name /path/to/image [/path/to/thumbnail] [width of thumbnail] [height of thumbnail] [title text] %&#125;`  </span><br><span class="line">E.g : `&#123;% image fancybox right clear group:travel image2.png http://google.fr/images/image125.png 150px 300px &quot;A beautiful sunrise&quot; %&#125;`</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Classes (optional)</td>
+<td>You can add css classes to stylize the image. Separate class with whitespace. Tranquilpeak integrate many css class to create nice effects: <ul><li><strong>fancybox</strong> : Generate a fancybox image.</li><li><strong>nocaption</strong> : Caption of the image will not be displayed.</li><li><strong>left</strong> : Image will float at the left.</li><li><strong>right</strong> : Image will float at the right.</li><li><strong>center</strong> : Image will be at center.</li><li><strong>fig-20</strong> : Image will take 20% of the width of post width and automatically float at left.</li><li><strong>fig-25</strong> : Image will take 25% of the width of post width and automatically float at left.</li><li><strong>fig-33</strong> : Image will take 33% of the width of post width and automatically float at left.</li><li><strong>fig-50</strong> : Image will take 50% of the width of post width and automatically float at left.</li><li><strong>fig-75</strong> : Image will take 75% of the width of post width and automatically float at left.</li><li><strong>fig-100</strong> : Image will take 100% of the width of post width.</li><li><strong>clear</strong> : Add a div with <code>clear:both;</code> style attached after the image to retrieve the normal flow of the post.</li></ul></td>
+</tr>
+<tr>
+<td>Group (optional)</td>
+<td>Name of a group, used to create a gallery. <strong>Only for image with <code>fancybox</code> css class</strong></td>
+</tr>
+<tr>
+<td>Orignal image</td>
+<td>Path to the original image.</td>
+</tr>
+<tr>
+<td>Thumbnail image (optional)</td>
+<td>Path to the thumbnail image. If empty, the orignal image will be displayed.</td>
+</tr>
+<tr>
+<td>Width of thumbnail image (optional)</td>
+<td>Width to the thumbnail image. If the thumbnail image is empty, width will be attached to thumbnail image created from original image. E.g : <code>150px</code> or <code>85%</code>.</td>
+</tr>
+<tr>
+<td>Height of thumbnail image (optional)</td>
+<td>Height to the thumbnail image. If the thumbnail image is empty, height will be attached to thumbnail image created from original image. E.g : <code>300px</code> or <code>20%</code>.</td>
+</tr>
+<tr>
+<td>Title (optional)</td>
+<td>Title of image displayed in a caption under image. <code>Alt</code> HTML attribute will use this title. E.g : <code>&quot;A beautiful sunrise&quot;</code>.</td>
+</tr>
+</tbody></table>
+<h4 id="Video"><a href="#Video" class="headerlink" title="Video"></a>Video</h4><p>The video tag provides a convenient way to showcase self-hosted videos. Take a look at some examples here: <a href="https://louisbarranqueiro.github.io/hexo-theme-tranquilpeak/2014/10/29/Tags-plugins-showcase/#Video">Video Tag Demo</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Syntax : `&#123;% video [classes] videoURL [Optional Poster (Thumbnail) URL] [Width] [Caption] %&#125;`</span><br><span class="line">E.g : `&#123;% video center https://example.com/video.mp4 https://example.com/video-poster.jpg 100% Poster (Thumbnail) Enabled %&#125;`</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Classes (optional)</td>
+<td>Make sure to separate your class properties with whitespaces. Tranquilpeak integrates many css classes to create nice effects: <ul><li><strong>left</strong> : Video will float at the left (default alignment).</li><li><strong>right</strong> : Video will float at the right.</li><li><strong>center</strong> : Video will be at center.</li><li><strong>clear</strong> : Add a div with <code>clear:both;</code> style attached after the image to retrieve the normal flow of the post.</li><li><strong>nocaption</strong> : the provided caption will not be displayed.</li><li><strong>loop</strong> : once over, the video will playback from the beginning.</li><li><strong>nocontrols</strong> : The video’s default controls will be hidden. Most browsers still make them accessible by right clicking on the video.</li><li><strong>autoplay</strong> : Video will autoplay on page load. <strong>must be used with the ‘mute’ class</strong> to obey browser standards. Most likely will not work otherwise.</li><li><strong>muted</strong> : The video will be muted</li></li><li><strong>fig-20</strong> : Image will take 20% of the width of post width and automatically float at left.</li><li><strong>fig-25</strong> : Image will take 25% of the width of post width and automatically float at left.</li><li><strong>fig-33</strong> : Image will take 33% of the width of post width and automatically float at left.</li><li><strong>fig-50</strong> : Image will take 50% of the width of post width and automatically float at left.</li><li><strong>fig-75</strong> : Image will take 75% of the width of post width and automatically float at left.</li><li><strong>fig-100</strong> : Image will take 100% of the width of post width.</li></ul></td>
+</tr>
+<tr>
+<td>videoURL</td>
+<td>Path to the original video.</td>
+</tr>
+<tr>
+<td>Poster image (optional thumbnail)</td>
+<td>Path to the thumbnail image. If empty, the initial frame of video will be displayed.</td>
+</tr>
+<tr>
+<td>Width of thumbnail image (optional)</td>
+<td>Width of the video frame. E.g : <code>85%</code>.</td>
+</tr>
+<tr>
+<td>Caption (optional)</td>
+<td>Title of image displayed in a caption under image. <code>Alt</code> HTML attribute will use this title. E.g : <code>&quot;A beautiful sunrise&quot;</code>.</td>
+</tr>
+</tbody></table>
+<h4 id="Tabbed-code-block"><a href="#Tabbed-code-block" class="headerlink" title="Tabbed code block"></a>Tabbed code block</h4><p>Tabbed code blocks are useful to group multiple code blocks related. For example, the source code of a web component (html, css and js). Or compare a source code in different languages.</p>
+<p><img src="http://q1kfgxn5f.bkt.clouddn.com/tabbed_codeblock-tag.png" alt="tabbed_codeblock-tag"></p>
+<p>Check it live : <a href="https://louisbarranqueiro.github.io/hexo-theme-tranquilpeak/2014/10/29/Tags-plugins-showcase/#Tabbed-code-block">tabbed code block demo</a></p>
+<p>Syntax :</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;% tabbed_codeblock [name] [link] %&#125;</span><br><span class="line">    &lt;!-- tab [lang] --&gt;</span><br><span class="line">        source code</span><br><span class="line">    &lt;!-- endtab --&gt;</span><br><span class="line">&#123;% endtabbed_codeblock %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>E.g :</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;% tabbed_codeblock example http:<span class="comment">//example.com %&#125;</span></span><br><span class="line">    &lt;!-- tab js --&gt;</span><br><span class="line">        <span class="keyword">var</span> test = <span class="string">'test'</span>;</span><br><span class="line">    &lt;!-- endtab --&gt;</span><br><span class="line">    &lt;!-- tab css --&gt;</span><br><span class="line">        .btn &#123;</span><br><span class="line">            color: red;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;!-- endtab --&gt;</span><br><span class="line">&#123;% endtabbed_codeblock %&#125;</span><br></pre></td></tr></table></figure>
+
+
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Name (optional)</td>
+<td>Name of the code block, or of the file</td>
+</tr>
+<tr>
+<td>Link (optional)</td>
+<td>Link to a demo, or a file</td>
+</tr>
+<tr>
+<td>Lang (optional)</td>
+<td>Programming language use for the current tab</td>
+</tr>
+</tbody></table>
+<h4 id="Wide-image"><a href="#Wide-image" class="headerlink" title="Wide image"></a>Wide image</h4><p>Wide image tag is useful to display wide images in full width. It takes entire window width. Check the result : <a href="https://louisbarranqueiro.github.io/hexo-theme-tranquilpeak/2014/10/29/Tags-plugins-showcase/#Wide-images">Wide image tag demo</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Syntax : `&#123;% wide_image /path/to/image [title text] %&#125;`  </span><br><span class="line">E.g : `&#123;% wide_image http://google.fr/images/image125.png &quot;A beautiful sunrise&quot; %&#125;`</span><br></pre></td></tr></table></figure>
+
+
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Image</td>
+<td>Path to the original image.</td>
+</tr>
+<tr>
+<td>Title (optional)</td>
+<td>Title of image displayed in a caption under image. <code>Alt</code> HTML attribute will use this title. E.g : <code>&quot;A beautiful sunrise&quot;</code>.</td>
+</tr>
+</tbody></table>
+<h4 id="Fancybox"><a href="#Fancybox" class="headerlink" title="Fancybox"></a>Fancybox</h4><p><code>fancybox</code> tag is deprecated since Tranquilpeak 1.3. Please use <code>image</code> tag with <code>fancybox</code> class to generate them. More information here : <a href="#image">Image tag</a> </p>
+<h2 id="Running"><a href="#Running" class="headerlink" title="Running"></a>Running</h2><p>Run <code>hexo server</code> and start writing! :)</p>
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/Hexo/" rel="tag">Hexo</a>
+
+            </div>
+        
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2019 Mr.WangLi. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">Mr.WangLi</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+        
+        
+    </div>
+</div>
+
+        
+            <div id="algolia-search-modal" class="modal-container">
+    <div class="modal">
+        <div class="modal-header">
+            <span class="close-button"><i class="fa fa-times"></i></span>
+            <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+                <span class="searchby-algolia-text text-color-light text-small">by</span>
+                <img class="searchby-algolia-logo" src="/assets/images/logo-algolia-nebula-blue-full.svg">
+            </a>
+            <i class="search-icon fa fa-search"></i>
+            <form id="algolia-search-form">
+                <input type="text" id="algolia-search-input" name="search"
+                    class="form-control input--large search-input" placeholder="Search "
+                    />
+            </form>
+        </div>
+        <div class="modal-body">
+            <div class="no-result text-color-light text-center">没有找到文章</div>
+            <div class="results">
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a
+                            class="link-unstyled"
+                            href="/2017/12/10/about-we/"
+                            aria-label=": 关于我们"
+                        >
+                            <img class="media-image" src="http://q1kfgxn5f.bkt.clouddn.com/we.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a
+                            class="link-unstyled"
+                            href="/2017/12/10/about-we/"
+                            aria-label=": 关于我们"
+                        >
+                            <h3 class="media-heading">关于我们</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年12月10日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>回忆中的青春</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a
+                            class="link-unstyled"
+                            href="/2019/11/26/hexo-setup/"
+                            aria-label=": Hexo+Gitee搭建个人博客教程"
+                        >
+                            <img class="media-image" src="http://q1kfgxn5f.bkt.clouddn.com/gitee.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a
+                            class="link-unstyled"
+                            href="/2019/11/26/hexo-setup/"
+                            aria-label=": Hexo+Gitee搭建个人博客教程"
+                        >
+                            <h3 class="media-heading">Hexo+Gitee搭建个人博客教程</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年11月26日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><blockquote>
+<p>哎，以前搭建过<a href="http://mybiwin.top">个人博客</a>，当时使用github，一是网速比较慢，二是当时配置的主题由于电脑格式化，<br>基本上无法还原了，github也没提交主题里面的东西。so?也算是好消息，近期打算重新改造主题，发现Gitee也支持pages了。哈哈哈哈，因祸得福！</p>
+</blockquote></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a
+                            class="link-unstyled"
+                            href="/2019/11/26/hexo-theme-tranquilpeak/"
+                            aria-label=": 个性主题配置"
+                        >
+                            <img class="media-image" src="http://q1kfgxn5f.bkt.clouddn.com/city.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a
+                            class="link-unstyled"
+                            href="/2019/11/26/hexo-theme-tranquilpeak/"
+                            aria-label=": 个性主题配置"
+                        >
+                            <h3 class="media-heading">个性主题配置</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年11月26日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>国外大神的一个Hexo主题风格，<a href="https://github.com/LouisBarranqueiro/hexo-theme-tranquilpeak">github地址</a>，目前支持的东西较少，但是整体风格甚是喜欢呐！</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+            </div>
+        </div>
+        <div class="modal-footer">
+            <p class="results-count text-medium"
+                data-message-zero="没有找到文章"
+                data-message-one="找到 1 篇文章"
+                data-message-other="找到 {n} 篇文章">
+                找到 3 篇文章
+            </p>
+        </div>
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/assets/js/script-2lbtpxvqm6g2pw3xrkogghnq6ee36uzw9xqyzvj7xic3ryv3cdind9x304he.min.js"></script>
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+    <script src="/assets/js/moment-with-locales.js"></script>
+    <script src="/assets/js/algoliasearch.js"></script>
+    <script>
+      var algoliaClient = algoliasearch('I16OUI732Q', 'e1b3e94dd16c5fd972a4f855178f99f8');
+      var algoliaIndex = algoliaClient.initIndex('biwin');
+    </script>
+
+
+    </body>
+</html>
